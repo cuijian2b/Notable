@@ -2,7 +2,7 @@
 tags: [Linux]
 title: Linux命令行
 created: '2021-10-28T09:14:55.575Z'
-modified: '2021-10-28T10:03:13.639Z'
+modified: '2021-10-29T01:34:30.093Z'
 ---
 
 Linux命令行
@@ -152,9 +152,9 @@ tar xf node-v12.18.1-linux-x64.tar.xz
 **unzip**
 
 ```prettyprint
-unzip file1.zip                 解压一个zip格式压缩包
+unzip file1.zip                   解压一个zip格式压缩包
 zip lib.zip tomcat.jar            将单个文件压缩(lib.zip)
-zip -r lib.zip lib/              将目录进行压缩(lib.zip)
+zip -r lib.zip lib/               将目录进行压缩(lib.zip)
 zip -r lib.zip tomcat-embed.jar xml-aps.jar        将多个文件压缩为zip文件(lib.zip) 
 ```
 
