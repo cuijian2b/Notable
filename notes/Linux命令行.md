@@ -357,6 +357,11 @@ docker rm first
 ```prettyprint
 ping 49.32.587.164
 ```
+对 www.lydms.com 发送 4 个 ping 包, 检查与其是否联通
+
+```prettyprint
+ping -c 4 www.lydms.com
+```
 
 **查看服务器指定端口是否可用**
 
@@ -371,14 +376,7 @@ telnet 49.32.587.164 8093
 ```prettyprint
 https://blog.csdn.net/lydms/article/details/113698856
 ```
-**3、ping命令**\
-对 www.lydms.com 发送 4 个 ping 包, 检查与其是否联通
-
-```prettyprint
-ping -c 4 www.lydms.com
-```
-
-**4、netstat 命令**\
+### 2、查看当前端口号占用情况
 `netstat 命令用于显示各种网络相关信息，如网络连接, 路由表, 接口状态等等;`\
 列出所有处于监听状态的tcp端口:
 
@@ -392,7 +390,6 @@ netstat -lt
 netstat -tulpn
 ```
 
-**5、查看当前端口号占用情况**\
 1.用于查看某一端口的占用情况
 
 ```prettyprint
@@ -410,6 +407,16 @@ netstat -tunlp
 ```prettyprint
 netstat -tunlp|grep 8080
 ```
+### 3、获取进程启动目录
+```prettyprint
+ps -ef | grep python
+
+cd /proc/4431/fd
+ls -l
+
+lsof -p $PID
+```
+
 
 **1、shutdown(关闭计算机)**
 

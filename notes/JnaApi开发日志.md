@@ -37,3 +37,15 @@ extern "C"
 ```
 ## 二、CTP模式接口设计
 
+## 三、redis相关
+### 1、redis配置
+```prettyprint
+{
+    "ip": "192.168.1.82",
+    "port": 6379,
+    ip=192.168.1.82
+    port=6379
+    db_index=5
+    channel1=position1
+}
+```
