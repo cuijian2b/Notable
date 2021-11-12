@@ -22,10 +22,11 @@ cj@192.168.1.82:/home/cj/redis 6367
 nohup redis-server &
 ```
 
-## 3、数据库错误
+## 3、数据库
 **明文保存密码**
+**double类型数据，是否可改成整形**
 
-## 4、服务器错误
+## 4、服务器
 **出现数据头转换错误**
 ```
 ssize_t retCode = ntohl(proHead->RetCode);
@@ -72,16 +73,73 @@ $1_t
 ```
 ```
 pMsg->(\w*)_(\w*)_(\w*) =
-pMsg->\l$1\u$2\u$3 =
+pMsg->\u$1\u$2\u$3 =
 pMsg->(\w*)_(\w*) =
-pMsg->\l$1\u$2 =
+pMsg->\u$1\u$2 =
 ```
 
 ## 6、服务器特性
 登录服数据同步一对一发送，数据查询支持多端同时分发
 
-
-
-
-
-
+## 7、下单相关
+### 7.1、用户信息
+ ```
+{
+    "Id":1
+    "UserID":"admin1"
+    "Password":"companyid"
+    "Token":"c1117a628a54b3ce5c876e3fd2934d8c"
+    "SessionID":8
+    "ClientType":1
+    "AccountId":1
+    "PbuId":1
+    "OwnerType":1
+    "UserPropty":1
+    "UserStatus":0
+    "FeeGroup":2
+    "SubmitPbuId":"pbu"
+    "ClearingFirm":"cl"
+    "BranchId":"br"
+    "OrderRestrictions":"1"
+    "CompanyId":"userpasswd"
+    "UserAccount:"17695333340"
+    "Phone:""
+    "HolderAccountId:"abc1"
+    "ContractAccountCode:"000001"    
+}
+``` 
+```
+"Id":2
+"UserID":"admin2"
+"Password":"companyid"
+"Token":"74faf094329713e0de744711ae966015"
+"SessionID":13
+"ClientType":1
+"AccountId":2
+"PbuId":1
+"OwnerType":1
+"UserPropty":1
+"UserStatus":0
+"FeeGroup":2
+"SubmitPbuId":"pbu"
+"ClearingFirm":"cl"
+"BranchId":"br"
+"OrderRestrictions":"1"
+"CompanyId":"userpasswd"
+"UserAccount:"17695333340"
+"Phone:""
+"HolderAccountId:"abc2"
+"ContractAccountCode:"000002"
+``` 
+### 7.2、订单信息
+#### 7.2.1、单笔限价买开单
+```
+PassOrder *pOrder = new PassOrder;
+pOrder->OptionId = 1;
+strncpy(pOrder->OptionIdSource, "102", sizeof(pOrder->OptionIdSource));
+pOrder->SecurityId = 1;                
+pOrder->Category = BUY_OPEN;
+pOrder->Entrust = ET_LIMIT_PRICE_IDX;
+pOrder->OrderQty = 100;
+pOrder->Price = 10000;
+```
