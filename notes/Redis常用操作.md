@@ -13,4 +13,6 @@ modified: '2021-11-04T05:52:46.622Z'
 select 5                        // 选择第5号数据库
 keys *                          // 显示所有数据
 Flushall                        // 清空数据
+
+HGETALL tb_new_order            // 获取表数据
 ```
