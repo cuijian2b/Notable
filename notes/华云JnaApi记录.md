@@ -46,7 +46,7 @@ uint16_t msgId = ntohs(proHead->FuncNo);
 (\w*)_(\w*)
 \u$1\u$2
     "(\w)
-    "\u$1    
+    "\u$1
 ```
 **变量类型替换**
 ```
@@ -108,12 +108,23 @@ pRsp->$1 = jsonStruct.$1;
 ```
 (.*);
 strncpy(pRsp->$1, jsonStruct.$1.c_str(), sizeof(pRsp->$1));    
-``` 
+```
+```
+(pMsg(.*))\[(.*)(info\.(.*));
+strncpy($1, $4.c_str(), sizeof($1));    
+```  
 **json消息替换**
  ```
     "
 
 ``` 
+**数据库替换**
+ ```
+   COMMENT(.*)
+,"
+    (\w*) 
+    "`$1`     
+```
 
 ## 6、服务器特性
 登录服数据同步一对一发送，数据查询支持多端同时分发
