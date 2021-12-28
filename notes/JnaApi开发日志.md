@@ -25,7 +25,7 @@ struct QueryLoginMsg
 ```prettyprint
 extern "C" 
 {
-    __attribute__ ((visibility("default"))) void SetQueryIp(IpStruct ipInfo);
+    __attribute__ ((visibility("default"))) void SetQueryIp(const IpStructArray *pIps, int logLevel);
 }
 ```
 **3、回调函数格式标准**

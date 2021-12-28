@@ -16,7 +16,36 @@ std::function<void(ProtoHeader *, char *, int)> callBack =
                 this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 RspFuncs[cmd] = callBack;
 ```
-### 2、读数据线程
+### 2、网络配置
+```prettyprint
+#define NTOHLL(value) ({                                                                                   \
+    int64_t val = value;                                                                                   \
+    if (__BYTE_ORDER == __LITTLE_ENDIAN)                                                                   \
+    {                                                                                                      \
+        val = (((uint64_t)htonl((int)((val << 32) >> 32))) << 32) | (unsigned int)htonl((int)(val >> 32)); \
+    }                                                                                                      \
+    else if (__BYTE_ORDER == __BIG_ENDIAN)                                                                 \
+    {                                                                                                      \
+        val = val;                                                                                         \
+    }                                                                                                      \
+    val;                                                                                                   \
+})
+
+#define HTONLL(value) (                                                                                        \
+    {                                                                                                          \
+        int64_t val = value;                                                                                   \
+        if (__BYTE_ORDER == __LITTLE_ENDIAN)                                                                   \
+        {                                                                                                      \
+            val = (((uint64_t)htonl((int)((val << 32) >> 32))) << 32) | (unsigned int)htonl((int)(val >> 32)); \
+        }                                                                                                      \
+        else if (__BYTE_ORDER == __BIG_ENDIAN)                                                                 \
+        {                                                                                                      \
+            val = val;                                                                                         \
+        }                                                                                                      \
+        val;                                                                                                   \
+    })
+```
+### 3、读数据线程
 ```prettyprint
 // 读数据线程函数
 void CClientOnloadSocket::ReadThread()
@@ -51,7 +80,7 @@ else
     IsReadOver = false;
 }
 ```
-### 3、关闭连接
+### 4、关闭连接
 ```prettyprint
 void CClientOnloadSocket::Close()
 {
@@ -63,7 +92,7 @@ void CClientOnloadSocket::Close()
     Heart.Reset();
 }
 ```
-### 4、关闭线程
+### 5、关闭线程
 ```prettyprint
 CClientOnloadSocket::~CClientOnloadSocket()
 {
