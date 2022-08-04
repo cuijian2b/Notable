@@ -141,6 +141,7 @@ tar -zcvf start.tar.gz ./*             将当前目录下的所欲文件打包�
 tar -xvf start.tar.gz                解压start.tar.gz压缩包，到当前文件夹下；
 tar -xvf start.tar.gz -C usr/local（C为大写，中间无空格）
                                     解压start.tar.gz压缩包，到/usr/local目录下；
+unzip start.tar.gz -d usr/loal
 ```
 
 解压缩`tar.xz`文件
@@ -226,6 +227,7 @@ grep -ni under 123.txt       在123.txt文件中搜索under字符串，大小写
 
 ```prettyprint
 nm -D optionApi.so | grep GetMsgInfo    在库中查找函数
+nm -D optionApi.so | c++filt| grep GetMsgInfo    在库中查找函数
 ```
 **终止当前操作**
 
@@ -640,7 +642,7 @@ https://www.cnblogs.com/lldsn/p/10489593.html
 
 ## 十二、用户权限操作
 
-#### 1、添加用户
+### 1、添加用户
 
 添加用户`sum`:
 
@@ -698,7 +700,7 @@ su sum
 exit
 ```
 
-#### 2、添加组
+### 2、添加组
 
 添加用户组
 
@@ -721,7 +723,52 @@ cat /etc/group
 sum: x:1000:1000:: /usr/sum :/bin/bash\
 sum: x:0:1000:: /usr/sum :/bin/bash
 
-## 十三、TOP
+## 十三、环境变量
+### 1、添加环境变量
+```prettyprint
+echo $PATH
+export PATH=/usr/local/cuda/bin:$PATH
+
+echo $LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib
+export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+
+echo $PKG_CONFIG_PATH=~/usr/local/lib/pkgconfig
+# 保存记录
+source ~/.bashrc
+```
+### 2、pkg环境变量
+```prettyprint
+# 添加变量
+echo $PKG_CONFIG_PATH=~/usr/local/lib/pkgconfig
+
+# 修改pkgconfig目录下pc文件
+prefix=~/usr/local/lib
+
+# 保存记录
+source ~/.bashrc
+```
+### 3、protobuf示例
+```prettyprint
+export PATH=~/usr/local/bin:$PATH
+
+export LIBRARY_PATH=~/usr/local/lib
+export LD_LIBRARY_PATH=~/usr/local/lib:$LD_LIBRARY_PATH
+
+export C_INCLUDE_PATH=~/usr/local/include
+export CPLUS_INCLUDE_PATH=~/usr/local/include
+
+# 添加变量
+echo $PKG_CONFIG_PATH=~/usr/local/lib/pkgconfig
+
+# 修改pkgconfig目录下pc文件
+prefix=~/usr/local/lib
+
+# 保存记录
+source ~/.bashrc
+```
+
+## 十四、TOP
 
 实时占用的资源:
 

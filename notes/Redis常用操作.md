@@ -1,5 +1,6 @@
 ---
-tags: [DataBase]
+tags: 
+    - Redis
 title: Redis常用操作
 created: '2021-11-03T09:35:15.213Z'
 modified: '2021-11-04T05:52:46.622Z'

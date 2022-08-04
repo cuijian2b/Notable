@@ -1,11 +1,12 @@
 ---
-tags: [记录]
-title: 华云JnaApi记录
+tags: 
+    - Jop
+title: 华云：JnaApi记录
 created: '2021-10-29T10:28:33.266Z'
 modified: '2021-11-18T02:24:13.137Z'
 ---
 
-# 华云JnaApi记录
+
 ## 起服地址
 **1、交易所**
 jianglp@192.168.1.82:/home/jianglp/work/exchange_c
