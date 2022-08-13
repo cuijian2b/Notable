@@ -12,6 +12,7 @@ modified: '2021-11-25T03:52:12.423Z'
 {
     "editor.formatOnSave": false,     // 保存文件时代码格式化
     "editor.autosave": false,         // 自动保存方式
+    "editor.wordWrap": true,          // 自动换行
 }
 ```
 

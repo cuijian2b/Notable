@@ -10,6 +10,7 @@ modified: '2021-12-24T10:00:46.020Z'
 ## 1. API简介
 
 ### 1.1 什么是API：API(Application Programming
+
 Interface)提供了对某个问题的抽象，以及客户与解决该问题的软件组件之间进行交互的方式。组件本身通常以软件类库形式分发，它们可以在多个应用程序中使用。
 **概况地说，** **API** **定义了一些可复用的模块，使得各个模块化功能块可以嵌入到最终用户的应用程序中去**
 。API是一个明确定义的接口，可以为其它软件提供特定服务。
@@ -20,7 +21,8 @@ Interface)提供了对某个问题的抽象，以及客户与解决该问题的�
 
 API是软件组件的逻辑接口，隐藏了实现这个接口所需的内部细节。
 
-### 1.2 API设计上有什么不同：
+### 1.2 API设计上有什么不同
+
 接口是开发者所编写的最重要的代码。因为比起相关的实现代码出现问题，修复接口出现的问题代价要大得多。
 
 API开发中的一些关键因素：
@@ -41,7 +43,7 @@ API开发中的一些关键因素：
 
 **API描述了其他工程师构建他们的应用软件所使用的软件。因此，API必须拥有良好的设计、文档、回归测试，并且保证发布之间的稳定性。**
 
-### 1.3 为什么要使用API：
+### 1.3 为什么要使用API
 
 (1).更健壮的代码：隐藏实现、延长寿命、促进模块化、减少代码重复、消除硬编码假设、易于改变实现、易于优化。
 
@@ -49,7 +51,7 @@ API开发中的一些关键因素：
 
 (3).并行开发。
 
-### 1.4 何时应当避免使用API：
+### 1.4 何时应当避免使用API
 
 (1).许可证限制。
 
@@ -59,12 +61,13 @@ API开发中的一些关键因素：
 
 (4).缺乏文档。
 
-### 1.5 API示例：
+### 1.5 API示例
+
 在现代软件开发中API无处不在，从OS、语言层面的API，到图像、声音、图形、并发、网络、XML、数学、Web浏览器以及GUI API。
 
 术语SDK(软件开发工具包)和术语API是密切相关的。本质上讲，SDK是安装在计算机上的特定平台的包，其目的是使用一个或多个API构建应用。SDK至少要包含编译程序所需的头文件(.h)以及提供API实现的库文件(.dylib、.so、.dll)，用以链接到应用程序之中。然而，SDK还可能包含其它帮助使用API的资源，如文档、示例代码以及支持工具。
 
-### 1.6 文件格式和网络协议：
+### 1.6 文件格式和网络协议
 
 在计算机应用中存在几个其它形式的常用通信”协议”，其中最常见的一个就是文件格式。它是使用众所周知的数据组织层次将内存中的数据存储到磁盘文件上的方法。比如，JPEG文件交换格式(JFIF)是用来交换JPEG编码图像的图像文件格式，通常使用.jpg或.jpeg文件扩展名。
 
@@ -74,14 +77,16 @@ API开发中的一些关键因素：
 
 ## 2. 特征
 
-### 2.1 问题域建模：
+### 2.1 问题域建模
+
 编写API的目的是解决特定的问题或完成具体的任务。因此，API应该首先为问题提供一个清晰的解决方案，同时能对实际的问题域进行准确的建模。
 
 API应该对它所解决的问题提供逻辑抽象。也就是说，在设计API时，应该阐述在选定问题域内有意义的深层概念，而不是公开低层实现细节。当你把API文档提供给一位非程序员时，他应当能够理解接口中的概念并且知道它的工作机制。
 
 API同样需要对问题域的关键对象建模。该过程旨在描述特定问题域中对象的层次结构，因此经常被称作”面向对象设计”或者”对象建模”。对象建模的目的是确定主要对象的集合，这些对象提供的操作以及对象之间的关系。
 
-### 2.2 隐藏实现细节：
+### 2.2 隐藏实现细节
+
 创建API的主要原因是隐藏所有的实现细节，以免将来修改API对已有客户造成影响。任何内部实现细节(那些很可能变更的部分)必须对该API的客户隐藏。主要有两种技巧可以达到此目标：物理隐藏和逻辑隐藏。物理隐藏表示只是不让用户获得私有源代码。逻辑隐藏则需要使用语言特性限制用户访问API的某些元素。
 
 物理隐藏：在C和C++中，声明和定义是有特定含义的精确术语。 **声明只是告诉编译器一个名字以及它的类型，并不为其分配任何内存**
@@ -102,7 +107,7 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 
 隐藏实现类：除了隐藏类的内部方法和变量之外，还应该尽力隐藏那些纯粹是实现细节的类。实际上，一些类仅用于实现，因此应该将其从API的公有接口中移除。
 
-### 2.3 最小完备性：
+### 2.3 最小完备性
 
 (1).优秀的API设计应该是最小完备的。即它应该尽量简洁，但不要过分简洁。
 
@@ -115,7 +120,8 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 
 避免将函数声明为可以重写的函数(虚的)，除非你有合理且迫切的需求。
 
-### 2.4 易用性：
+### 2.4 易用性
+
 优秀的API设计应该使简单的任务更简单,使人一目了然。例如，好的API可以让客户仅通过方法签名就能知晓使用方法，而不需要另写文档：
 
 (1).使用枚举类型代替布尔类型，提高代码的可读性。
@@ -132,7 +138,8 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 
 (7).不要将平台相关的#if或#ifdef语句放在公共的API中，因为这些语句暴露了实现细节，并使API因平台而异。
 
-### 2.5 松耦合：
+### 2.5 松耦合
+
 耦合：软件组件之间相互连接的强度的度量，即系统中每个组件对其它组件的依赖程度。内聚：单个软件组件内的各种方法相互关联或聚合强度的度量。
 
 (1).优秀的API表现为松耦合和高内聚。
@@ -152,7 +159,7 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 设计模式是针对软件设计问题的通用解决方案。该术语源于《设计模式：可复用面向对象软件的基础》一书。书中介绍了下列通用的 **设计模式，它们可以分成三大类**
 ：
 
-### 3.1 创建型模式：
+### 3.1 创建型模式
 
 抽象工厂模式：创建一组相关的工厂。
 
@@ -164,7 +171,7 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 
 单例模式：确保类只有一个实例。
 
-### 3.2 结构型模式：
+### 3.2 结构型模式
 
 适配器模式：将类的接口转换为另一种接口。
 
@@ -180,7 +187,7 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 
 代理模式：提供另一个对象的替代物或占位符，以便控制对该对象的访问。
 
-### 3.3 行为模式：
+### 3.3 行为模式
 
 职责链模式：使多个接收者对象有机会处理来自发送者对象的请求。
 
@@ -207,57 +214,58 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 设计模式更多介绍参考：<https://blog.csdn.net/fengbingchun/category_2134223.html>
 
 测试代码cplusplus_api_design.hpp内容如下：
+
 ```prettyprint
     // Pimpl惯用法："自动定时器"，当被销毁时打印出其生存时间
     class AutoTimer {
     public:
-    	explicit AutoTimer(const std::string& name);
-    	~AutoTimer();
+     explicit AutoTimer(const std::string& name);
+     ~AutoTimer();
     
-    	AutoTimer(const AutoTimer&) = delete;
-    	AutoTimer& operator=(const AutoTimer&) = delete;
+     AutoTimer(const AutoTimer&) = delete;
+     AutoTimer& operator=(const AutoTimer&) = delete;
     
     private:
-    	class Impl; // 私有内嵌类
-    	std::unique_ptr<Impl> impl_;
+     class Impl; // 私有内嵌类
+     std::unique_ptr<Impl> impl_;
     };
     
     // 单例模式
     class Singleton {
     public:
-    	static Singleton& GetInstance() // 既可以返回单例类的指针也可以返回引用,当返回指针时，客户可以删除该对象，因此最好返回引用
-    	{
-    		static Singleton instance;
-    		return instance;
-    	}
+     static Singleton& GetInstance() // 既可以返回单例类的指针也可以返回引用,当返回指针时，客户可以删除该对象，因此最好返回引用
+     {
+      static Singleton instance;
+      return instance;
+     }
     
-    	Singleton(const Singleton&) = delete;
-    	Singleton& operator=(const Singleton&) = delete;
+     Singleton(const Singleton&) = delete;
+     Singleton& operator=(const Singleton&) = delete;
     
     private:
-    	Singleton() { fprintf(stdout, "constructor\n"); }
-    	~Singleton() { fprintf(stdout, "destructor\n"); }
+     Singleton() { fprintf(stdout, "constructor\n"); }
+     ~Singleton() { fprintf(stdout, "destructor\n"); }
     };
     
     // 单一状态设计模式
     class Monostate {
     public:
-    	int GetTheAnswer() const { return answer_; }
+     int GetTheAnswer() const { return answer_; }
     
     private:
-    	static int answer_; // 也可以将该静态变量声明为.cpp文件作用域的静态变量，而不是私有的类静态变量
+     static int answer_; // 也可以将该静态变量声明为.cpp文件作用域的静态变量，而不是私有的类静态变量
     };
     
     // 工厂模式
     class IRenderer {
     public:
-    	virtual ~IRenderer() {}
-    	virtual void Render() = 0;
+     virtual ~IRenderer() {}
+     virtual void Render() = 0;
     };
     
     class RendererFactory {
     public:
-    	IRenderer* CreateRenderer(const std::string& type);
+     IRenderer* CreateRenderer(const std::string& type);
     };
     
     // 扩展工厂模式：将派生类与工厂方法解耦并支持在运行时添加新的派生类：工厂类维护一个映射，此映射将类型名与创建对象的回调关联起来。
@@ -265,154 +273,154 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
     // 需要注意的问题是，工厂对象必须保持其状态信息。因此，最好强制要求任一时刻都只能创建一个工厂对象，这也是为何多数工厂对象也是单例的原因
     class RendererFactory2 {
     public:
-    	typedef IRenderer* (*CreateCallback)();
-    	static void RegisterRenderer(const std::string& type, CreateCallback cb);
-    	static void UnRegisterRenderer(const std::string& type);
-    	static IRenderer* CreateRenderer(const std::string& type);
+     typedef IRenderer* (*CreateCallback)();
+     static void RegisterRenderer(const std::string& type, CreateCallback cb);
+     static void UnRegisterRenderer(const std::string& type);
+     static IRenderer* CreateRenderer(const std::string& type);
     
     private:
-    	typedef std::map<std::string, CreateCallback> callback_map_;
-    	static callback_map_ renderers_;
+     typedef std::map<std::string, CreateCallback> callback_map_;
+     static callback_map_ renderers_;
     };
     
     // 代理模式：尤其适用于Original类是第三方类库
     class IOriginal {
     public:
-    	virtual void DoSomething(int value) = 0;
+     virtual void DoSomething(int value) = 0;
     };
     
     class Original : public IOriginal {
     public:
-    	void DoSomething(int value) override { fprintf(stdout, "Original::DoSomething\n"); }
+     void DoSomething(int value) override { fprintf(stdout, "Original::DoSomething\n"); }
     };
     
     class Proxy : public IOriginal {
     public:
-    	Proxy() : orig_(new Original()) {}
-    	~Proxy() { delete orig_; }
+     Proxy() : orig_(new Original()) {}
+     ~Proxy() { delete orig_; }
     
-    	void DoSomething(int value) override { return orig_->DoSomething(value); }
+     void DoSomething(int value) override { return orig_->DoSomething(value); }
     
-    	Proxy(const Proxy&) = delete;
-    	Proxy& operator=(const Proxy&) = delete;
+     Proxy(const Proxy&) = delete;
+     Proxy& operator=(const Proxy&) = delete;
     
     private:
-    	Original* orig_;
+     Original* orig_;
     };
     
     // 适配器模式
     class Rectangle {
     public:
-    	Rectangle() = default;
-    	~Rectangle() {}
+     Rectangle() = default;
+     ~Rectangle() {}
     
-    	void setDimensions(float cx, float cy, float w, float h) { fprintf(stdout, "width: %f, height: %f\n", w, h); }
+     void setDimensions(float cx, float cy, float w, float h) { fprintf(stdout, "width: %f, height: %f\n", w, h); }
     };
     
     class RectangleAdapter {
     public:
-    	RectangleAdapter() : rect_(new Rectangle()) {}
-    	~RectangleAdapter() { delete rect_; }
+     RectangleAdapter() : rect_(new Rectangle()) {}
+     ~RectangleAdapter() { delete rect_; }
     
-    	void Set(float x1, float y1, float x2, float y2)
-    	{
-    		float w = x2 - x1;
-    		float h = y2 - y1;
-    		float cx = w / 2.f + x1;
-    		float cy = h / 2.f + y1;
-    		rect_->setDimensions(cx, cy, w, h);
-    	}
+     void Set(float x1, float y1, float x2, float y2)
+     {
+      float w = x2 - x1;
+      float h = y2 - y1;
+      float cx = w / 2.f + x1;
+      float cy = h / 2.f + y1;
+      rect_->setDimensions(cx, cy, w, h);
+     }
     
-    	RectangleAdapter(const RectangleAdapter&) = delete;
-    	RectangleAdapter& operator=(const RectangleAdapter&) = delete;
+     RectangleAdapter(const RectangleAdapter&) = delete;
+     RectangleAdapter& operator=(const RectangleAdapter&) = delete;
     
     private:
-    	Rectangle* rect_;
+     Rectangle* rect_;
     };
     
     // 外观模式
     class Subsystem1 {
     public:
-    	Subsystem1() = default;
-    	~Subsystem1() {}
-    	void Operation() { fprintf(stdout, "subsystem1 operation\n"); }
+     Subsystem1() = default;
+     ~Subsystem1() {}
+     void Operation() { fprintf(stdout, "subsystem1 operation\n"); }
     };
     
     class Subsystem2 {
     public:
-    	Subsystem2() = default;
-    	~Subsystem2() {}
-    	void Operation() { fprintf(stdout, "subsystem2 operation\n"); }
+     Subsystem2() = default;
+     ~Subsystem2() {}
+     void Operation() { fprintf(stdout, "subsystem2 operation\n"); }
     };
     
     class Facade {
     public:
-    	Facade() : subs1_(new Subsystem1()), subs2_(new Subsystem2()) {}
-    	~Facade()
-    	{
-    		delete subs1_;
-    		delete subs2_;
-    	}
+     Facade() : subs1_(new Subsystem1()), subs2_(new Subsystem2()) {}
+     ~Facade()
+     {
+      delete subs1_;
+      delete subs2_;
+     }
     
-    	void OperationWrapper()
-    	{
-    		subs1_->Operation();
-    		subs2_->Operation();
-    	}
+     void OperationWrapper()
+     {
+      subs1_->Operation();
+      subs2_->Operation();
+     }
     
-    	Facade(const Facade&) = delete;
-    	Facade& operator=(const Facade&) = delete;
+     Facade(const Facade&) = delete;
+     Facade& operator=(const Facade&) = delete;
     
     private:
-    	Subsystem1* subs1_;
-    	Subsystem2* subs2_;
+     Subsystem1* subs1_;
+     Subsystem2* subs2_;
     };
     
     // 观察者模式
     class SubjectBase; // 抽象主题
     class ObserverBase { // 抽象观察者
     public:
-    	ObserverBase(std::string name, SubjectBase* sub) : name_(name), sub_(sub) {}
-    	virtual void Update() = 0;
+     ObserverBase(std::string name, SubjectBase* sub) : name_(name), sub_(sub) {}
+     virtual void Update() = 0;
     
     protected:
-    	std::string name_;
-    	SubjectBase* sub_;
+     std::string name_;
+     SubjectBase* sub_;
     };
     
     class StockObserver: public ObserverBase { // 具体观察者，看股票的
     public:
-    	StockObserver(std::string name, SubjectBase* sub) : ObserverBase(name, sub) {}
-    	void Update() override;
+     StockObserver(std::string name, SubjectBase* sub) : ObserverBase(name, sub) {}
+     void Update() override;
     };
     
     class NBAObserver : public ObserverBase { // 具体观察者，看NBA的
     public:
-    	NBAObserver(std::string name, SubjectBase* sub) : ObserverBase(name, sub) {}
-    	void Update() override;
+     NBAObserver(std::string name, SubjectBase* sub) : ObserverBase(name, sub) {}
+     void Update() override;
     };
     
     class SubjectBase { // 抽象主题
     public:
-    	virtual void Attach(ObserverBase* observer) = 0;
-    	virtual void Notify() = 0;
+     virtual void Attach(ObserverBase* observer) = 0;
+     virtual void Notify() = 0;
     
     public:
-    	std::string action_;
-    	std::vector<ObserverBase*> observers_;
+     std::string action_;
+     std::vector<ObserverBase*> observers_;
     };
     
     
     class SecretarySubject : public SubjectBase { // 具体主题
     public:
-    	void Attach(ObserverBase* ob) { observers_.push_back(ob); }
+     void Attach(ObserverBase* ob) { observers_.push_back(ob); }
     
-    	void Notify()
-    	{
-    		for (auto it = observers_.cbegin(); it != observers_.cend(); ++it) {
-    			(*it)->Update();
-    		}
-    	}
+     void Notify()
+     {
+      for (auto it = observers_.cbegin(); it != observers_.cend(); ++it) {
+       (*it)->Update();
+      }
+     }
     };
     
     int test_api_design_3();
@@ -427,230 +435,232 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
     int test_api_design_3_observer();
 ```
 
-测试代码cplusplus_api_design.cpp内容如下：   
-```prettyprint    
+测试代码cplusplus_api_design.cpp内容如下：
+
+```prettyprint
     class AutoTimer::Impl {
     public:
-    	double GetElapsed() const
-    	{
+     double GetElapsed() const
+     {
     #ifdef _WIN32
-    		return (GetTickCount() - start_time_) / 1e3;
+      return (GetTickCount() - start_time_) / 1e3;
     #else
-    		struct timeval end_time;
-    		gettimeofday(&end_time, nullptr);
-    		double t1 = start_time_.tv_usec / 1e6 + start_time_.tv_sec;
-    		double t2 = end_time.tv_usec / 1e6 + end_time.tv_sec;
-    		return t2 - t1;
+      struct timeval end_time;
+      gettimeofday(&end_time, nullptr);
+      double t1 = start_time_.tv_usec / 1e6 + start_time_.tv_sec;
+      double t2 = end_time.tv_usec / 1e6 + end_time.tv_sec;
+      return t2 - t1;
     #endif
-    	}
+     }
     
-    	std::string name_;
+     std::string name_;
     #ifdef _WIN32
-    	DWORD start_time_;
+     DWORD start_time_;
     #else
-    	struct timeval start_time_;
+     struct timeval start_time_;
     #endif
     };
     
     AutoTimer::AutoTimer(const std::string& name) : impl_(std::make_unique<Impl>())
     {
-    	impl_->name_ = name;
+     impl_->name_ = name;
     #ifdef _WIN32
-    	impl_->start_time_ = GetTickCount();
+     impl_->start_time_ = GetTickCount();
     #else
-    	gettimeofday(&impl_->start_time_, nullptr);
+     gettimeofday(&impl_->start_time_, nullptr);
     #endif
     }
     
     AutoTimer::~AutoTimer()
     {
-    	fprintf(stdout, "%s : took %f secs\n", impl_->name_.c_str(), impl_->GetElapsed());
+     fprintf(stdout, "%s : took %f secs\n", impl_->name_.c_str(), impl_->GetElapsed());
     }
     
     int test_api_design_3_pimpl()
     {
-    	AutoTimer auto_timer("Take");
+     AutoTimer auto_timer("Take");
     
-    	return 0;
+     return 0;
     }
     
     int test_api_design_3_singleton()
     {
-    	Singleton& singleton1 = Singleton::GetInstance();
-    	Singleton& singleton2 = Singleton::GetInstance();
+     Singleton& singleton1 = Singleton::GetInstance();
+     Singleton& singleton2 = Singleton::GetInstance();
     
-    	return 0;
+     return 0;
     }
     
     int Monostate::answer_ = 42;
     int test_api_design_3_monostate()
     {
-    	Monostate m1, m2;
-    	fprintf(stdout, "answer1: %d, answer2: %d\n", m1.GetTheAnswer(), m2.GetTheAnswer());
+     Monostate m1, m2;
+     fprintf(stdout, "answer1: %d, answer2: %d\n", m1.GetTheAnswer(), m2.GetTheAnswer());
     
-    	return 0;
+     return 0;
     }
     
     class OpenGLRenderer : public IRenderer {
     public:
-    	OpenGLRenderer() { fprintf(stdout, "constructor OpenGLRenderer\n"); }
-    	void Render() override { fprintf(stdout, "OpenGLRenderer::Render\n"); }
-    	~OpenGLRenderer() { fprintf(stdout, "destructor OpenGLRenderer\n"); }
+     OpenGLRenderer() { fprintf(stdout, "constructor OpenGLRenderer\n"); }
+     void Render() override { fprintf(stdout, "OpenGLRenderer::Render\n"); }
+     ~OpenGLRenderer() { fprintf(stdout, "destructor OpenGLRenderer\n"); }
     };
     
     class DirectXRenderer : public IRenderer {
     public:
-    	DirectXRenderer() { fprintf(stdout, "constructor DirectXRenderer\n"); }
-    	void Render() override { fprintf(stdout, "DirectXRenderer::Render\n"); }
-    	~DirectXRenderer() { fprintf(stdout, "destructor DirectXRenderer\n"); }
+     DirectXRenderer() { fprintf(stdout, "constructor DirectXRenderer\n"); }
+     void Render() override { fprintf(stdout, "DirectXRenderer::Render\n"); }
+     ~DirectXRenderer() { fprintf(stdout, "destructor DirectXRenderer\n"); }
     };
     
     IRenderer* RendererFactory::CreateRenderer(const std::string& type)
     {
-    	if (type == "opengl")
-    		return new OpenGLRenderer();
-    	if (type == "directx")
-    		return new DirectXRenderer();
+     if (type == "opengl")
+      return new OpenGLRenderer();
+     if (type == "directx")
+      return new DirectXRenderer();
     
-    	return nullptr;
+     return nullptr;
     }
     
     int test_api_design_3_factory()
     {
-    	RendererFactory factory;
+     RendererFactory factory;
     
-    	IRenderer* renderer1 = factory.CreateRenderer("opengl");
-    	IRenderer* renderer2 = factory.CreateRenderer("directx");
+     IRenderer* renderer1 = factory.CreateRenderer("opengl");
+     IRenderer* renderer2 = factory.CreateRenderer("directx");
     
-    	if (renderer1) {
-    		renderer1->Render();
-    		delete renderer1;
-    	}
+     if (renderer1) {
+      renderer1->Render();
+      delete renderer1;
+     }
     
-    	if (renderer2) {
-    		renderer2->Render();
-    		delete renderer2;
-    	}
+     if (renderer2) {
+      renderer2->Render();
+      delete renderer2;
+     }
     
-    	return 0;
+     return 0;
     }
     
     RendererFactory2::callback_map_ RendererFactory2::renderers_;
     
     void RendererFactory2::RegisterRenderer(const std::string& type, CreateCallback cb)
     {
-    	renderers_[type] = cb;
+     renderers_[type] = cb;
     }
     
     void RendererFactory2::UnRegisterRenderer(const std::string& type)
     {
-    	renderers_.erase(type);
+     renderers_.erase(type);
     }
     
     IRenderer* RendererFactory2::CreateRenderer(const std::string& type)
     {
-    	callback_map_::iterator it = renderers_.find(type);
-    	if (it != renderers_.end()) {
-    		// 调用回调以构造此派生类的对象
-    		return (it->second)();
-    	}
+     callback_map_::iterator it = renderers_.find(type);
+     if (it != renderers_.end()) {
+      // 调用回调以构造此派生类的对象
+      return (it->second)();
+     }
     
-    	return nullptr;
+     return nullptr;
     }
     
     // API用户现在可以在系统中注册(以及注销)新的渲染器
     class UserRenderer : public IRenderer {
     public:
-    	UserRenderer() { fprintf(stdout, "constructor UserRenderer\n"); }
-    	void Render() override { fprintf(stdout, "UserRenderer::Render\n"); }
-    	~UserRenderer() { fprintf(stdout, "destructor UserRenderer\n"); }
-    	static IRenderer* Create() { return new UserRenderer(); }
+     UserRenderer() { fprintf(stdout, "constructor UserRenderer\n"); }
+     void Render() override { fprintf(stdout, "UserRenderer::Render\n"); }
+     ~UserRenderer() { fprintf(stdout, "destructor UserRenderer\n"); }
+     static IRenderer* Create() { return new UserRenderer(); }
     };
     
     int test_api_design_3_factory_expand()
     {
-    	// 注册一个新的渲染器
-    	RendererFactory2::RegisterRenderer("user", UserRenderer::Create);
-    	// 为新的渲染器创建一个实例
-    	IRenderer* r = RendererFactory2::CreateRenderer("user");
-    	if (r) {
-    		r->Render();
-    		delete r;
-    	}
+     // 注册一个新的渲染器
+     RendererFactory2::RegisterRenderer("user", UserRenderer::Create);
+     // 为新的渲染器创建一个实例
+     IRenderer* r = RendererFactory2::CreateRenderer("user");
+     if (r) {
+      r->Render();
+      delete r;
+     }
     
-    	return 0;
+     return 0;
     }
     
     int test_api_design_3_proxy()
     {
-    	Proxy proxy;
-    	proxy.DoSomething(3);
+     Proxy proxy;
+     proxy.DoSomething(3);
     
-    	return 0;
+     return 0;
     }
     
     int test_api_design_3_adapter()
     {
-    	RectangleAdapter rect;
-    	rect.Set(10.f, 5.f, 20.f, 25.f);
+     RectangleAdapter rect;
+     rect.Set(10.f, 5.f, 20.f, 25.f);
     
-    	return 0;
+     return 0;
     }
     
     int test_api_design_3_facade()
     {
-    	Facade facade;
-    	facade.OperationWrapper();
+     Facade facade;
+     facade.OperationWrapper();
     
-    	return 0;
+     return 0;
     }
     
     void StockObserver::Update()
     {
-    	fprintf(stdout, "%s: %s, can't play stock\n", name_.c_str(), sub_->action_.c_str());
+     fprintf(stdout, "%s: %s, can't play stock\n", name_.c_str(), sub_->action_.c_str());
     }
     
     void NBAObserver::Update()
     {
-    	fprintf(stdout, "%s: %s, can't watch NBA\n", name_.c_str(), sub_->action_.c_str());
+     fprintf(stdout, "%s: %s, can't watch NBA\n", name_.c_str(), sub_->action_.c_str());
     }
     
     int test_api_design_3_observer()
     {
-    	SubjectBase* subject = new SecretarySubject();
+     SubjectBase* subject = new SecretarySubject();
     
-    	ObserverBase* observer1 = new NBAObserver("Jack", subject);
-    	ObserverBase* observer2 = new StockObserver("Tom", subject);
+     ObserverBase* observer1 = new NBAObserver("Jack", subject);
+     ObserverBase* observer2 = new StockObserver("Tom", subject);
     
-    	subject->Attach(observer1);
-    	subject->Attach(observer2);
+     subject->Attach(observer1);
+     subject->Attach(observer2);
     
-    	subject->action_ = "boss comes";
-    	subject->Notify();
+     subject->action_ = "boss comes";
+     subject->Notify();
     
-    	delete subject;
-    	delete observer1;
-    	delete observer2;
+     delete subject;
+     delete observer1;
+     delete observer2;
     
-    	return 0;
+     return 0;
     }
     
     
     int test_api_design_3()
     {
-    	//return test_api_design_3_pimpl();
-    	//return test_api_design_3_singleton();
-    	//return test_api_design_3_monostate();
-    	//return test_api_design_3_factory();
-    	//return test_api_design_3_factory_expand();
-    	//return test_api_design_3_proxy();
-    	//return test_api_design_3_adapter();
-    	//return test_api_design_3_facade();
-    	return test_api_design_3_observer();
+     //return test_api_design_3_pimpl();
+     //return test_api_design_3_singleton();
+     //return test_api_design_3_monostate();
+     //return test_api_design_3_factory();
+     //return test_api_design_3_factory_expand();
+     //return test_api_design_3_proxy();
+     //return test_api_design_3_adapter();
+     //return test_api_design_3_facade();
+     return test_api_design_3_observer();
     }
 ```
 
-### 3.4 Pimpl惯用法： 
+### 3.4 Pimpl惯用法
+
 **”pointer to implementation”(** **指向实现的指针)**
 **的缩写。该技巧可以避免在头文件中暴露私有细节**
 。因此它是促进API接口和实现保持完全分离的重要机制。但是Pimpl并不是严格意义上的设计模式(它是受制于C++特定限制的变通方案)，这种惯用法可以看作是桥接设计模式的一种特例。
@@ -669,7 +679,8 @@ API同样需要对问题域的关键对象建模。该过程旨在描述特定�
 Pimpl惯用法的主要缺点是，必须为你创建的每个对象分配并释放实现对象。这使对象增加了一个指针，同时因为必须通过指针间接访问所有成员变量，这种额外的调用层次与新增的new和delete开销类似，可能引入性能冲击。如果关注内存分配器的性能，那么可以考虑使用”快速Pimpl”(Fast
 Pimpl)惯用法，该方法为Impl类重载了new和delete操作符，以便使用更加高效的小内存定长分配器。
 
-### 3.5 单例： 
+### 3.5 单例
+
 **单例设计模式用来确保一个类仅存在一个实例** 。该模式亦提供对此唯一实例的全局访问点。 **可以认为单例是一种更加优雅的全局变量**。单例模式要求创建一个类，它包含一个静态方法，每次调用该方法时返回该类的同一个实例。
 
 单例是一种更加优雅地维护全局状态的方式，但始终应该考虑清楚是否需要全局状态。
@@ -686,7 +697,8 @@ Pimpl)惯用法，该方法为Impl类重载了new和delete操作符，以便使�
 
 单例模式有一些替代方案，包括依赖注入、单一状态模式以及使用会话上下文。
 
-### 3.6 工厂模式：
+### 3.6 工厂模式
+
 它是一个创建型的设计模式。它允许创造对象时不指定要创建的对象的具体类型。本质上，工厂方法是构造函数的一般化。
 **从基本层面来看，工厂方法仅是一个普通的方法调用，该调用返回类的实例。但是，它们经常和继承一起使用，即派生类能够重写工厂方法并返回派生类的实例。常见的做法是使用抽象基类实现工厂模式**
 。
@@ -695,7 +707,8 @@ Pimpl)惯用法，该方法为Impl类重载了new和delete操作符，以便使�
 
 使用工厂方法提供更强大的类构造语义并隐藏子类的细节。
 
-### 3.7 API包装器模式：
+### 3.7 API包装器模式
+
 潜在副作用是影响性能，这主要因为额外增加的一级间接寻址以及存储包装层次状态带来的开销。结构化设计模式可以处理接口包装任务。
 
 (1).代理模式： **代理设计模式为另一个类提供了一对一的转发接口**
@@ -713,7 +726,8 @@ Pimpl)惯用法，该方法为Impl类重载了new和delete操作符，以便使�
 
 外观模式为一组类提供了简化的接口。在封装外观模式中，底层类不再可访问。
 
-### 3.8  观察者模式：
+### 3.8  观察者模式
+
 **支持组件解耦且避免了循环依赖** 。
 
 模型--视图--控制器(Model-View-Controller,
@@ -725,28 +739,32 @@ MVC)架构：此模式要求业务逻辑(Model)独立于用户界面(View)，控
 
 ## 4. 设计
 
-### 4.1 良好设计的例子：
+### 4.1 良好设计的例子
 
-### 4.2 收集功能性需求：
+### 4.2 收集功能性需求
+
 软件产业中的需求可以分为不同的类型，包括如下几种：(1).业务需求：即软件如何满足组织的需求。(2).功能性需求：即软件应该完成什么功能。(3).非功能性需求：描述软件必须达到的质量标准。
 
 功能性需求规定了API如何表现。
 
 功能性需求一般用需求文档来管理，其中每个需求都有一个唯一的标识符和一个描述信息。好的功能性需求应该是简单、易读、清晰、可验证的，而且没有开发术语。
 
-### 4.3 创建用例：
+### 4.3 创建用例
+
 用例从用户的角度描述API的需求。
 
 用例可以是面向目标的简短描述信息的简要列表，也可以是更为正式的模板定义的结构化说明。
 
 用户故事是敏捷开发过程中一种从用户那获得最小需求的方法。用户故事是一个高层的需求概念,它仅包含了足够的信息,开发者可以利用这些信息对实现用户故事所需要付出的努力给出一个合理的评估。
 
-### 4.4 API设计的元素：
+### 4.4 API设计的元素
+
 产生好的API设计的秘诀是：对问题领域进行合理抽象，然后设计相应的对象与类的层次结构来表达该抽象。抽象是关于一些事务的简单描述，不需要对编程实现有任何了解即可理解。
 
 API设计包括开发顶层架构和详细的类层次结构。
 
-### 4.5 架构设计：
+### 4.5 架构设计
+
 软件架构描述了一个完整系统的很粗糙的结构：API中顶层对象的集合以及它们彼此之间的关系。
 
 架构设计被众多独特的组织、环境和运行等因素约束。有些约束是可以协商的。总是为变化而设计。变化是不可避免的。
@@ -757,7 +775,8 @@ API的关键对象并不容易识别，请尝试从不同的角度看待问题�
 
 在API的附属文档中要描述其高层架构并阐述其原理。
 
-### 4.6 类的设计：
+### 4.6 类的设计
+
 要集中精力设计定义了API 80%功能的20%的类。
 
 避免深度继承层次结构。
@@ -771,7 +790,8 @@ LSP)指出，在不修改任何行为的情况下用派生类替换基类，这�
 
 迪米特法则(Law of Demeter, LoD)指出，你应该只调用自己类或直接相关对象的函数。
 
-### 4.7 函数设计：
+### 4.7 函数设计
+
 避免过长的参数列表。对于有很多可选参数的函数，你可以考虑通过传递结构体(struct)或映射(map)来代替。
 
 API中处理错误条件的三种主要方式是：返回错误码；抛出异常；中止程序。使用一致的、充分文档化的错误处理机制。
@@ -782,7 +802,7 @@ API中处理错误条件的三种主要方式是：返回错误码；抛出异�
 
 ## 5. 风格
 
-### 5.1 纯C API：
+### 5.1 纯C API
 
 为实现更严格的类型检查，并确保C++程序可以使用你的API，请尝试用C++编译器来编译C API。 **相对于** **C** **编译器而言，C++**
 **编译器的类型检查更为严格** 。
@@ -793,30 +813,36 @@ API包装在一个extern
 
 **在C API** **的头文件中使用extern “C”** **限制，以便于C++** **程序能正确地编译和链接C API** 。
 
-### 5.2 面向对象的C++ API：
+### 5.2 面向对象的C++ API
+
 面向对象API允许使用对象而非动作来建模软件，同时也带来了继承和封装等优点。
 
-### 5.3 基于模板的API：
+### 5.3 基于模板的API
+
 模板是C++的一个特性，它支持使用泛化的、尚未具体指定的类型编写函数或类。然后，你可以用具体类型实例化这些泛化的类型，以此实现模板的特化。模块可以在编译时执行一些工作，进而改进运行时性能。
 
-### 5.4 数据驱动型API：
+### 5.4 数据驱动型API
+
 数据驱动型程序指的是：通过每次运行时提供不同的输入数据，它可以指向不同的操作。程序的业务逻辑能够抽象到可以由人来编辑的数据文件中去。利用这种方法，可以在不重新编译可执行文件的情况下改变程序的行为。
 
 数据驱动型API可以很好地映射到Web服务和其他客户端/服务器形式的API，它们也支持数据驱动型测试技术。
 
 ## 6. C++用法
 
-### 6.1 命名空间：
+### 6.1 命名空间
+
 是若干唯一符号的逻辑分组。它提供了一种避免命名冲突的方法，以防两个API使用相同的名字定义符号。任何时候都不应该在公用API头文件的全局作用域内使用using关键字。
 
 应当始终使用一致的前缀或C++的namespace关键字为API符号提供命名空间。
 
-### 6.2 构造函数和赋值：
+### 6.2 构造函数和赋值
+
 如果类分配了资源，则应该遵循”三大件”(Big Tree)规则，同时定义析构函数、复制构造函数和赋值操作符。
 
 **考虑在只带有一个参数的构造函数的声明前使用explicit** **关键字** ，用于阻止构造对象时特定的构造函数被隐式调用。
 
-### 6.3 const正确性：
+### 6.3 const正确性
+
 是指使用C++的const关键字将变量或者方法声明为不可变的。
 
 尽可能早地将函数和参数声明为const。过后修正API中的const正确性会既耗时又麻烦。
@@ -825,40 +851,47 @@ API包装在一个extern
 
 **返回函数结果时，将结果声明为const** **的主要理由是其引用了对象的内部状态** 。首选传值方式而不是const引用方式返回函数的结果。
 
-### 6.4 模板：
+### 6.4 模板
+
 在编译时生成代码，它们对生成大量形式相似但只类型不同的代码尤其有用。
 
 如果只需要一些确定的特化集合，那么尽量选择显式模板实例化。这样做可以隐藏私有细节并降低构建时间。
 
-### 6.5 操作符重载：
+### 6.5 操作符重载
+
 应当只在有意义的地方使用操作符重载，即只在那些API用户看起来很自然、不会违反最小意外原理(rule of the least surprise)的地方使用。这指的是应该保持操作符的自然语义。
 
 除非操作符必须访问私有成员或受保护的成员，或它是=、[]、->、->*、()、(T)、new、delete其中之一，否则应该尽量将其声明为自由函数。
 
 转换操作符用于定义将对象自动转换成不同类型的对象。转换操作符没有指定返回值类型，这是因为编译器可以根据操作符名字推断出类型，而且转换操作符没有参数。给类添加转换操作符，从而利用自动类型强制转换。
 
-### 6.6 函数参数：
+### 6.6 函数参数
+
 尽量在可行的地方为输入参数使用const引用，而非指针。对于输出参数，考虑使用指针而不是非const引用，以便显式地向客户表面它们可能被修改。
 
 当默认值会暴露实现中的常量时，尽量选择函数重载，而不是默认参数。尽量避免定义涉及构造临时对象的默认参数，因为这些参数会以传值的方式传递给方法，开销很大。
 
-### 6.7 避免使用#define定义常量：
-#define预处理指令本质上是用一个字符串替换源码中的另一个字符串。
+### 6.7 避免使用#define定义常量
+
+# define预处理指令本质上是用一个字符串替换源码中的另一个字符串。
 
 使用静态const数据成员而非#define表示类常量。
 
-### 6.8 避免使用友元：
+### 6.8 避免使用友元
+
 在C++中，友元是一个类向另外一个类或函数授予其完全访问特权的方法。友元类或函数可以访问类中所有受保护成员和私有成员。
 
 避免使用友元，它往往预示着糟糕的设计，这就等于赋予用户访问API所有受保护成员和私有成员的权限。
 
-### 6.9 导出符号：
+### 6.9 导出符号
+
 应该显式导出公有API的符号，以便维持对动态库中类、函数和变量访问性的直接控制。对于GNU
 C++，可以使用__fvisibility_hidden选项。
 
 使用内部链接以便隐藏.cpp文件内部的、具有文件作用域的自由函数和变量。也就是说，使用static关键字或匿名命名空间。
 
-### 6.10 编码规范：
+### 6.10 编码规范
+
 为API指定编码风格标准，这有助于保证一致性、明确流程，并总结常见的工程陷阱。
 
 ## 7. 性能
@@ -869,13 +902,15 @@ C++，可以使用__fvisibility_hidden选项。
 
 为优化API，应使用工具收集代码在真实运行实例中的性能数据，然后把优化精力集中在实际的瓶颈上。不要猜测性能瓶颈的位置。
 
-### 7.1 通过const引用传递输入参数：
+### 7.1 通过const引用传递输入参数
+
 应该通过const引用而非传值方式传递不会改变的对象。这样可以避免创建和销毁对象的临时副本，及副本中所有的成员和继承对象的内存与性能开销。
 **这条规则仅适用于对象，对于诸如** **int** **、bool** **、float** **、double** **及char**
 **等内建类型不适用，因为它们以及很小了，能够放进CPU** **寄存器**
 。此外，STL迭代器和函数对象是采用传值方式的，也不适用这条规则。对于用户自定义类型，应该尽量使用引用或const引用。
 
-### 7.2 最小化#include依赖：
+### 7.2 最小化#include依赖
+
 编译一个大工程需要花费的时间很大程度上取决于#include文件的数量和深度。如此而论，缩短构建时间的一种常见技巧是尝试减少头文件中#include语句的数量。
 
 前置声明可以在下列几种情况下使用：(1).不需要知道类的大小；(2).没有引用类的任何成员方法；(3).没有引用类的任何成员变量。
@@ -887,20 +922,24 @@ C++，可以使用__fvisibility_hidden选项。
 不管使用前置声明还是#iniclude方式，头文件应该#include或者前置声明其所有的依赖项。
 
 考虑在头文件中加入冗余的#include警戒语句，为客户优化编译时间：
-``` 
+
+```
     #ifndef XXXX_H
     #include “xxxx.h”
     #endif
 ```
-### 7.3 声明常量：
+
+### 7.3 声明常量
+
 应使用extern声明全局作用域的常量，或者在类中以静态const方式声明常量，然后在.cpp文件中定义常量值。这样就减少了包含这些头文件的模块的目标文件大小。更可取的方法是将这些常量隐藏在函数调用背后。
 
 constexpr关键字可以用来标识已知为恒定不变的函数或变量，以便编译器执行更好的优化。
 
-### 7.4 初始化列表：
+### 7.4 初始化列表
+
 使用构造函数初始化列表，从而为每个数据成员减少一次调用构造函数的开销。这些应在.cpp文件中声明，以便隐藏实现细节。成员变量在构造函数的函数体调用之前构造。
 
-### 7.5 内存优化：
+### 7.5 内存优化
 
 (1).根据成员变量类型对它们加以聚集，从而优化对象大小。
 
@@ -908,22 +947,27 @@ constexpr关键字可以用来标识已知为恒定不变的函数或变量，�
 
 (3).使用大小明确的类型(比如int32_t和uint16_t)指定变量所需的最大位数。
 
-### 7.6 除非需要，勿用内联：
+### 7.6 除非需要，勿用内联
+
 避免在公有头文件中使用内联代码，除非能证明代码会导致性能问题，并确认内联可以解决该问题。
 
-### 7.7 写时复制：
+### 7.7 写时复制
+
 节省内存最好的办法之一是到确实需要时再分配。这是写时复制技巧的本质目标。其方法是允许所有客户共享一份唯一的资源，直到他们中的一个需要修改这份资源为止。只有在那个时间点才会构造副本----这是”写时复制”名字的来由。使用写时复制语义，为对象的多份副本减少内存消耗。
 
-### 7.8 迭代元素：
+### 7.8 迭代元素
+
 STL解决这个问题的方法是使用迭代器。迭代器可以对容器中的部分或全部元素进行遍历。采用迭代器模型遍历简单的线性数据结构。对于链表或树型数据结构，如果迭代器性能很重要，那么应该考虑使用数组引用。
 
-### 7.9 性能分析：
+### 7.9 性能分析
+
 工具：Gprof、OProfile、Open SpeedShop、CodeProphet
 Profiler、Valgrind、Coverity、MALLOC_CHECK_。
 
 ## 8. 版本控制
 
-### 8.1 版本号：
+### 8.1 版本号
+
 API的每次发布都应该附带一个唯一的标识符，以便其最新版本能够与之前版本有所区别。标准的做法是使用版本号。
 
 大多数方案通过使用一系列数字反映一个发布版本的修改程度，这些数字通常用英文句点(.)分隔： **主版本号.次版本号.补丁版本号** 。
@@ -934,7 +978,8 @@ API的每次发布都应该附带一个唯一的标识符，以便其最新版�
 
 API的版本信息应该可以在代码中访问，以便允许客户以API版本号为条件编写代码。
 
-### 8.2 软件分支策略：
+### 8.2 软件分支策略
+
 每个软件项目都需要一条”主干”代码路线，它是项目源代码的持久存储库。对于每次版本发布，或者必须与下次发布区分的开发工作，可由主干代码派生出分支。
 
 只在必要时再分支，尽量延迟创建分支的时机。尽量使用分支代码路线而非冻结代码路线。尽早且频繁地合并分支。
@@ -942,10 +987,11 @@ API的版本信息应该可以在代码中访问，以便允许客户以API版�
 在创建相同API的Basic和Advanced分发版时，在所有生成文件的版本号里带上”Basic”或”Advanced”字符串。不要试图仅使用版本号识别文件是由Basic还是Advanced
 API生成的。
 
-### 8.3 API的生命周期：
+### 8.3 API的生命周期
+
 API发布后，可以改进(evolve)但不应改变(change)。
 
-### 8.4 兼容性级别：
+### 8.4 兼容性级别
 
 向后兼容性可以定义为API提供与上一个版本相同的功能。换句话说，如果一个API不需要用户作出任何改变就能够完全取代上一个版本的API，那么它就是向后兼容的。这暗示了新版本API是旧版本API的超集。可以添加新的功能，但是不能对旧API定义的已有功能做不兼容的修改。
 
@@ -974,7 +1020,7 @@ API。
 
 **向前兼容性意味着使用第N** **版本API** **的客户代码可以不加修改地降级使用第N-1** **版本** 。
 
-### 8.5 怎样维护向后兼容性：
+### 8.5 怎样维护向后兼容性
 
 在API初始版本发布后，不要为抽象基类添加新的纯虚成员函数。
 
@@ -982,21 +1028,24 @@ API。
 C++，可在方法声明前添加__declspec(deprecated)前缀，而对于GNU
 C++编译器，可使用__attribute__((deprecated))。
 
-### 8.6 API审查：
+### 8.6 API审查
+
 在发布API新版本前，引入API审查过程，以便检查所有修改。
 
 ## 9. 文档
 
 编写API文档的一种最简单的方式是使用工具自动地从头文件中提取注释来构建。在这类工具中最为流行且特性完善的一款是Doxygen。
 
-### 9.1 编写文档的理由：
+### 9.1 编写文档的理由
+
 良好的文档描述了如何使用API，并会解释API对不同输入所产生的行为。在实现每个组件时编写API文档。在API完成后对文档进行修订。
 
 契约编程(contractprogramming)核心观点是：软件组件为它实现的服务提供一种契约或责任。通过使用组件，客户同意契约中的条款。契约编程意味着为函数的前置条件、后置条件，以及类的不变式编写文档。
 
 应当为API的每个公有元素编写文档，包括每个类、函数、枚举、常量及typedef。如果客户可以访问某个元素，那就应该告诉客户它是什么和怎样使用。
 
-### 9.2 文档的类型：
+### 9.2 文档的类型
+
 使用自动生成文档的工具，从头文件注释中提取API文档。
 
 除了自动生成的API文档以外，还应该由人工编写提供有关API更高层次信息的文档。这通常是一份概述，内容包括API能做什么、用户为什么应当关注它等。
@@ -1005,10 +1054,12 @@ C++编译器，可使用__attribute__((deprecated))。
 
 在发布API时，始终应该说明API所使用的授权方式。这让客户知道你授予他们哪些权利以及他们具有什么义务。应当明确指定API的授权条款。
 
-### 9.3 文档可用性：
+### 9.3 文档可用性
+
 索引页、一致的视图和体验、代码示例、图表、搜索、面包屑导航、术语。
 
-### 9.4 使用Doxygen：
+### 9.4 使用Doxygen
+
 Doxygen是一种基于源代码中编写的注释自动生成多种格式API文档的实用工具。它支持多种语言，包括C、C++、Objective-C、Java、Python等。它能够生成多种格式的输出，包括HTML、LaTex、PDF、XML以及其它格式。Doxygen是开源的(以GNU通用公共许可证授权发布)，提供若干种平台的二进制发布包，包括Windows、Linux和Mac。
 
 Doxygen可自由配置。Doxygen支持多种不同风格的注释。
@@ -1019,10 +1070,12 @@ Doxygen使用介绍可参考：<https://blog.csdn.net/fengbingchun/article/detai
 
 为了确保不破坏用户程序，编写自动化测试是所能采取的措施中最重要的一项。
 
-### 10.1 编写测试的理由：
+### 10.1 编写测试的理由
+
 自动化测试可以帮助你确定是否正在构建正确的东西(也称为确认)，以及是否构建正确(也称为验证)。
 
-### 10.2 API测试的类型：
+### 10.2 API测试的类型
+
 常见的软件测试活动分为：白盒测试：测试是在理解源代码的基础上进行的。黑盒测试：测试是基于产品说明进行的，而不关心任何实现细节。灰盒测试：白盒测试和黑盒测试的组合，其中黑盒测试是在获知软件实现细节的基础上进行的。
 
 API测试应该组合使用单元测试和集成测试。也可以适当运用非功能性技术测试，比如性能测试、并发测试和安全性测试。
@@ -1033,13 +1086,14 @@ API测试应该组合使用单元测试和集成测试。也可以适当运用�
 
 对关键用例进行性能测试，有助于避免无意引入的速度问题或内存损失。如果API的性能很重要，考虑为关键用例编写性能测试，以避免引入性能损失。
 
-### 10.3 编写良好的测试：
+### 10.3 编写良好的测试
 
 良好测试的特征：快速、稳定、可移植、高编码标准、错误可重现。
 
 测试API的关键技术：条件测试、等价类、边界测试、参数测试、返回值断言、getter/setter对、操作顺序、回归测试、负面测试、缓冲区溢出、内存所有权、空输入。
 
-### 10.4 编写可测试的代码：
+### 10.4 编写可测试的代码
+
 不要等到最后再测试API。
 
 **测试驱动开发(Test-Driven Development, TDD)**
@@ -1055,7 +1109,8 @@ API测试应该组合使用单元测试和集成测试。也可以适当运用�
 **国际化(i18n)** **是使软件产品支持不同语言和区域差异的过程。相关术语”** **本地化”(i10n)**
 **是指基于基本的国际化支持，把应用程序的文本翻译成特定的语言，并为特定区域定义区域设置，如日期格式或货币符号** 。
 
-### 10.5 自动化测试工具：
+### 10.5 自动化测试工具
+
 分为4类：自动化测试框架、代码覆盖率工具、缺陷跟踪系统、持续构建系统。
 
 自动化测试框架：CppUnit、Boost Test、Google Test、TUT(Template Unit Test)。
@@ -1071,11 +1126,13 @@ Cloud。
 
 ## 11. 脚本化
 
-### 11.1 添加脚本绑定：
+### 11.1 添加脚本绑定
+
 脚本绑定提供了一种从脚本语言访问C++
 API的方式。这通常涉及为C++的类和函数创建包装代码，然后利用脚本语言自身的模块加载特性将其导入到脚本语言之中，比如Python可以使用import关键字导入包装代码，Ruby可以使用require。
 
-### 11.2 脚本绑定技术：
+### 11.2 脚本绑定技术
+
 Boost Python：也写作boost::python或Boost.Python，是一个C++库，它支持C++
 API与Python的互操作。它是Boost库中的一部分。利用Boost
 Python，你可以在C++代码中以编程的方式创建绑定，然后将该绑定与Python和Boost
@@ -1087,15 +1144,16 @@ SIP：是一个工具，它支持为Python创建C和C++绑定。
 
 COM(Component Object Model, 组件对象模型)：是一个二进制接口标准，它支持对象通过进程间通信机制进行彼此之间的交互。
 
-### 11.3 使用Boost Python添加Python绑定：务必确认编译脚本绑定时使用的Python版本与构建Boost Python库时使用的是一致的。
+### 11.3 使用Boost Python添加Python绑定：务必确认编译脚本绑定时使用的Python版本与构建Boost Python库时使用的是一致的
 
-### 11.4 使用SWIG添加Ruby绑定：
+### 11.4 使用SWIG添加Ruby绑定
 
 ## 12. 可扩展性
 
 所谓可扩展性，指的是对于客户的特定需求，在无需改进API的情况下，客户自行修改接口的行为。
 
-### 12.1 通过插件扩展：
+### 12.1 通过插件扩展
+
 在最常见的场景下，同样是动态库，插件并不是在构建时链接的，而是在运行时发现并加载的。因此， **用户可以利用你定义好的插件**
 **API** **来编写自己的插件。插件库是一个动态库，它可以独立于核心API**
 **编译，在运行时根据需要显示加载。不过插件也可以使用静态库，比如在嵌入式系统中，所有插件都是在编译时静态链接到应用程序中的**
@@ -1112,7 +1170,8 @@ Excel插件的扩展名是.xll。
 
 C++插件示例参考：<https://blog.csdn.net/fengbingchun/article/details/105104659>
 
-### 12.2 通过继承扩展：
+### 12.2 通过继承扩展
+
 继承是用于扩展类的主要面向对象机制。用户可以基于API中现有的类类定义新类并修改其功能。
 
 在定义派生类时，你只应该考虑提供了虚析构函数的类。
@@ -1120,6 +1179,7 @@ C++插件示例参考：<https://blog.csdn.net/fengbingchun/article/details/1051
 访问者模式：其核心目标是允许客户遍历一个数据结构中的所有对象，并在每个对象上执行给定操作。本质上，该模式是对向现有类中添加虚方法这一方式的模仿。客户能够有效地将它们自己的方法插入到你的类层次结构中。
 
 测试代码cplusplus_api_design.hpp内容如下：
+
 ```prettyprint
     class Element;
     
@@ -1127,106 +1187,110 @@ C++插件示例参考：<https://blog.csdn.net/fengbingchun/article/details/1051
     // 访问者模式使得易于增加新的操作: 访问者使得增加依赖于复杂对象结构的构件的操作变得容易. 仅需增加一个新的访问者即可在一个对象结构上定义一个新的操作
     class Visitor {
     public:
-    	virtual ~Visitor() = default;
-    	virtual void VisitConcreteElementA(Element* element) = 0;
-    	virtual void VisitConcreteElementB(Element* element) = 0;
+     virtual ~Visitor() = default;
+     virtual void VisitConcreteElementA(Element* element) = 0;
+     virtual void VisitConcreteElementB(Element* element) = 0;
     
     protected:
-    	Visitor() = default;
+     Visitor() = default;
     };
     
     class ConcreteVisitorA : public Visitor {
     public:
-    	ConcreteVisitorA() = default;
-    	~ConcreteVisitorA() = default;
+     ConcreteVisitorA() = default;
+     ~ConcreteVisitorA() = default;
     
-    	void VisitConcreteElementA(Element* element) override
-    	{
-    		fprintf(stdout, "I will visit ConcreteElementA ...\n");
-    	}
+     void VisitConcreteElementA(Element* element) override
+     {
+      fprintf(stdout, "I will visit ConcreteElementA ...\n");
+     }
     
-    	void VisitConcreteElementB(Element* element) override
-    	{
-    		fprintf(stdout, "I will visit ConcreteElementB ...\n");
-    	}
+     void VisitConcreteElementB(Element* element) override
+     {
+      fprintf(stdout, "I will visit ConcreteElementB ...\n");
+     }
     };
     
     class ConcreteVisitorB : public Visitor
     {
     public:
-    	ConcreteVisitorB() = default;
-    	~ConcreteVisitorB() = default;
+     ConcreteVisitorB() = default;
+     ~ConcreteVisitorB() = default;
     
-    	void VisitConcreteElementA(Element* element) override
-    	{
-    		fprintf(stdout, "I will visit ConcreteElementA ...\n");
-    	}
+     void VisitConcreteElementA(Element* element) override
+     {
+      fprintf(stdout, "I will visit ConcreteElementA ...\n");
+     }
     
-    	void VisitConcreteElementB(Element* element) override
-    	{
-    		fprintf(stdout, "I will visit ConcreteElementB ...\n");
-    	}
+     void VisitConcreteElementB(Element* element) override
+     {
+      fprintf(stdout, "I will visit ConcreteElementB ...\n");
+     }
     };
     
     class Element {
     public:
-    	virtual ~Element() = default;
-    	virtual void Accept(Visitor* visit) = 0;
+     virtual ~Element() = default;
+     virtual void Accept(Visitor* visit) = 0;
     
     protected:
-    	Element() = default;
+     Element() = default;
     };
     
     class ConcreteElementA : public Element {
     public:
-    	ConcreteElementA() = default;
-    	~ConcreteElementA() = default;
+     ConcreteElementA() = default;
+     ~ConcreteElementA() = default;
     
-    	void Accept(Visitor* visit) override
-    	{
-    		fprintf(stdout, "visiting ConcreteElementA ...\n");
-    		visit->VisitConcreteElementA(this);
-    	}
+     void Accept(Visitor* visit) override
+     {
+      fprintf(stdout, "visiting ConcreteElementA ...\n");
+      visit->VisitConcreteElementA(this);
+     }
     };
     
     class ConcreteElementB : public Element {
     public:
-    	ConcreteElementB() = default;
-    	~ConcreteElementB() = default;
+     ConcreteElementB() = default;
+     ~ConcreteElementB() = default;
     
-    	void Accept(Visitor* visit) override
-    	{
-    		fprintf(stdout, "visiting ConcreteElementB ...\n");
-    		visit->VisitConcreteElementB(this);
-    	}
+     void Accept(Visitor* visit) override
+     {
+      fprintf(stdout, "visiting ConcreteElementB ...\n");
+      visit->VisitConcreteElementB(this);
+     }
     };
     
     int test_api_design_12_vistor();
     int test_api_design_12();
 ```
+
 测试代码cplusplus_api_design.cpp内容如下：
+
 ```prettyprint
     int test_api_design_12_vistor()
     {
-    	Visitor* visit = new ConcreteVisitorA();
-    	Element* element = new ConcreteElementA();
-    	element->Accept(visit);
+     Visitor* visit = new ConcreteVisitorA();
+     Element* element = new ConcreteElementA();
+     element->Accept(visit);
     
-    	delete visit;
-    	delete element;
+     delete visit;
+     delete element;
     
-    	return 0;
+     return 0;
     }
     
     int test_api_design_12()
     {
-    	return test_api_design_12_vistor();
+     return test_api_design_12_vistor();
     }
 ```
-### 12.3 通过模板扩展：
+
+### 12.3 通过模板扩展
+
 当使用模板编程时，扩充接口的默认方式是利用具体类型来特化模板。
 
-## 附录A：
+## 附录A
 
 ### A.1 静态库与动态库
 
@@ -1241,14 +1305,15 @@ OS X机器上，静态库以.a为文件扩展名，而在Windows上，其文件�
 
 为了给客户更大的灵活性，在发布时，你应该首选动态库形式。如果库相当小，且非常稳定，你也可以提供一个静态库版本。
 
-### A.2 Windows上的库：
+### A.2 Windows上的库
+
 在Windows上，静态库用.lib文件表示，而动态库用.dll文件表示。此外，每个.dll文件必须有一个相应的导入库，或.lib文件。导入库用来将引用解析为DLL中导出的符号。
 
 DLL入口点：DLL可以提供一个可选的入口点函数，线程或进程加载DLL时可以用它初始化数据结构，卸载DLL的时候也可以用它清理内存。这是由DllMain()函数管理的，你可以定义并将其导出DLL。如果入口函数的返回值为FALSE，则是一个致命错误，应用程序会启动失败。
 
 在Windows上加载插件：在Windows平台上，LoadLibrary()或LoadLibraryEx()函数用以将动态库加载到进程中，GetProcAddress()函数用以获取DLL中的导出符号的地址。注意，以这种方式加载动态库时，就不需要.lib导入库文件了。
 
-### A.3 Linux上的库：
+### A.3 Linux上的库
 
 在Linux上创建静态库：在Linux上，静态库就是一个简单的存档文件，其中包含的是目标文件。利用Linux的ar命令，可以将一些目标文件编译到一个静态库中。
 
@@ -1262,7 +1327,7 @@ DLL入口点：DLL可以提供一个可选的入口点函数，线程或进程�
 
 在Linux上加载插件：在Linux平台上，你可以调用dlopen()函数将.so文件加载到当前进程中，然后用dlsym()函数访问库中的符号。
 
-### A.4 Mac OS X上的库：
+### A.4 Mac OS X上的库
 
 在Mac OS X上创建静态库：Linux上创建静态库的方法也可以用于Mac OS
 X。不过，在将静态库链接到应用程序时，有些行为是不同的。苹果公司并不鼓励使用-static编译器选项以静态链接所有依赖库的方式来生成可执行程序。基本上，Mac上的-static选项是为构建内核而保留的。Mac链接器默认情况下会扫描库查找路径中的所有位置来查找动态库。如果查找失败，链接器随后会再次扫描这些位置来寻找静态库。
