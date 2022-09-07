@@ -104,3 +104,6 @@ export LD_LIBRARY_PATH=$DPCPP_HOME/build/lib:$LD_LIBRARY_PATH
 
 [LLVM | 编译选项](https://intel.github.io/llvm-docs/UsersManual.html
 "LLVM | 编译选项")
+
+[LLVM | CUDA](https://blog.csdn.net/kunhe0512/category_11774233.html?spm=1001.2014.3001.5515
+"LLVM | CUDA")

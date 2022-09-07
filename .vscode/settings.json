@@ -1,3 +1,9 @@
 {
+    "picgo.picBed.current": "github",
+    "picgo.picBed.github.branch": "master",
+    "picgo.picBed.github.customUrl": "https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master",
+    "picgo.picBed.github.path": "notes/assert/",
+    "picgo.picBed.github.repo": "cuijian2b/Notable",
+    "picgo.picBed.github.token": "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",
     "vsnotes.defaultNotePath": "C:\\Users\\86199\\Documents\\OneNote\\Notable\\notes"
 }

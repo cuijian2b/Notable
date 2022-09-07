@@ -1,8 +1,9 @@
 ---
-tags: [Linux]
+tags:
+  - Linux
 title: Linux命令行
-created: '2021-10-28T09:14:55.575Z'
-modified: '2021-10-29T01:34:30.093Z'
+created: 2021-10-28T09:14:55.575Z
+modified: 2022-09-07T10:00:15.966Z
 ---
 
 Linux命令行
@@ -180,6 +181,8 @@ unzip -d /usr/app/com.lydms.english.zip
 ### 5、下载上传文件
 
 ```bash
+yum install -y lrzsz
+
 rz          上传文件；
 sz          下载文件；
 ```
@@ -296,7 +299,7 @@ ln -s /usr/local/app /data
 
 注意：创建软连接时，data目录后不加 / (加上后是查找其下一级目录)；
 
-![在这里插入图片描述](./assert/20191104170912257.png)\
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/20191104170912257.png)\
 **2、删除软连接**
 
 ```bash
@@ -305,7 +308,7 @@ rm -rf /data
 
 注意：取消软连接最后没有/，rm -rf 软连接。加上/是删除文件夹；
 
-![在这里插入图片描述](./assert/20191104172803658.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/20191104172803658.png)
 
 ## 六、Linux下文件的详细信息
 
@@ -317,7 +320,7 @@ rm -rf /data
 后三位其他用户对当前文件权限：可以读/不能写/不能执行
 ```
 
-![文件](./assert/20190925153418897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYyNDExNw==,size_16,color_FFFFFF,t_70)
+![文件](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/20190925153418897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYyNDExNw==,size_16,color_FFFFFF,t_70)
 
 **更改文件的权限**
 
@@ -466,7 +469,7 @@ shutdown -r +30 'The System Will Reboot in 30 Mins'   --30分钟后重启并并�
 netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ```
 
-![在这里插入图片描述](./assert/20200710160201853.png)\
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/20200710160201853.png)\
 查看处于`ESTABLISHED`状态连接
 
 ```bash
@@ -558,7 +561,7 @@ vim /etc/hosts
 ```
 
 重新加载成功：\
-![在这里插入图片描述](./assert/20200921141541487.jpg#pic_center)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/20200921141541487.jpg#pic_center)
 
 ## 九、yum常用命令
 
@@ -693,7 +696,7 @@ passwd sum
 cat /etc/passwd
 ```
 
-![反反复复](./assert/20200827143920513.png#pic_center)
+![反反复复](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/20200827143920513.png#pic_center)
 
 删除用户`sum`
 
@@ -796,9 +799,7 @@ source ~/.bashrc
 ### 4、系统环境变量
 
 ```bash
-
 export TMPDIR=~/.tmp        # 临时文件目录
-
 ```
 
 ## 十四、TOP
@@ -809,7 +810,7 @@ export TMPDIR=~/.tmp        # 临时文件目录
 top
 ```
 
-![在这里插入图片描述](./assert/20200831110407981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYyNDExNw==,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/20200831110407981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYyNDExNw==,size_16,color_FFFFFF,t_70#pic_center)
 
 top命令执行结果分为两个区域：**统计信息区**和**进程信息区**
 
@@ -913,59 +914,4 @@ top命令执行结果分为两个区域：**统计信息区**和**进程信息�
 - WCHAN:若该进程在睡眠，则显示睡眠中的系统函数名
 
 - Flags:任务标志
-:::
 
-::: {report-view="{\"mod\":\"1585297308_001\",\"spm\":\"1001.2101.3001.6548\",\"dest\":\"https://blog.csdn.net/weixin_44624117/article/details/101368670\",\"extend1\":\"pc\",\"ab\":\"new\"}"}
-<div>
-
-</div>
-:::
-:::
-00秒
-
-- COMMAND:命令名/行
-
-- PPID:父进程id
-
-- RUSER:Real user
-    name（看了好多，都是这样写，也不知道和user有什么区别，欢迎补充此处）
-
-- UID:进程所有者的id
-
-- VIRT:进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES
-
-- GROUP:进程所有者的组名
-
-- TTY:启动进程的终端名。不是从终端启动的进程则显示为?
-
-- NI:nice值。负值表示高优先级，正值表示低优先级
-
-- P:最后使用的CPU，仅在多CPU环境下有意义
-
-- TIME:进程使用的CPU时间总计，单位秒
-
-- SWAP:进程使用的虚拟内存中被被换出的大小
-
-- CODE:可执行代码占用的物理内存大小
-
-- DATA:可执行代码以外的部分（数据段+栈）占用的物理内存大小
-
-- SHR:共享内存大小
-
-- nFLT:页面错误次数
-
-- nDRT:最后一次写入到现在，被修改过的页面数
-
-- S:进程状态（D=不可中断的睡眠状态，R=运行，S=睡眠，T=跟踪/停止，Z=僵尸进程）
-
-- WCHAN:若该进程在睡眠，则显示睡眠中的系统函数名
-
-- Flags:任务标志
-:::
-
-::: {report-view="{\"mod\":\"1585297308_001\",\"spm\":\"1001.2101.3001.6548\",\"dest\":\"https://blog.csdn.net/weixin_44624117/article/details/101368670\",\"extend1\":\"pc\",\"ab\":\"new\"}"}
-<div>
-
-</div>
-:::
-:::
