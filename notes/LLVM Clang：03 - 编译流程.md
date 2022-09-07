@@ -2,12 +2,12 @@
 tags: 
     - LLVM
     - Clang
-title: LLVM Clang：02 - 编译流程
+title: LLVM Clang：03 - 编译流程
 created: '2022-8-02T08:30:18.408Z'
 modified: '2022-8-19T10:02:44.927Z'
 ---
 
-## 概况
+## 1、普通编译
 
 我们通过终端中输入，得到如下打印：
 
@@ -36,7 +36,7 @@ clang++ -ccc-print-phases test0.cpp -v --save-temps -g -o test0 >&test.log
 * 5：链接：链接需要的动态库和静态库，生成可执行文件，最终生成 image。
 * 下面我们一步一步拆解：
 
-## 1、预处理阶段
+### 1.1、预处理阶段
 
 是通过预处理器执行一系列的文本转换与文本处理。预处理器是在真正的编译开始之前由编译器调用的独立程序。
 
@@ -50,7 +50,7 @@ clang++ -ccc-print-phases test0.cpp -v --save-temps -g -o test0 >&test.log
 [参考文档](https://blog.csdn.net/develop_csdn/article/details/124539436#SEC41
 "参考文档")
 
-## 2、汇编文本
+### 1.2、汇编文本
 
 ```bash
     cat test0.s
@@ -58,16 +58,21 @@ clang++ -ccc-print-phases test0.cpp -v --save-temps -g -o test0 >&test.log
     diff test0.s compiled.s
 ```
 
-## 3、机器码
+### 1.3、机器码
 
 ```bash
     cat test0.o
     clang++ -c compiled.s -o assembled.o
 ```
 
-## 4、链接阶段
+### 1.4、链接阶段
 
 ```bash
     clang++ assembled.o -o hello_manual
     ./hello_manual
 ```
+
+## 2、SYCL编译
+
+[DPC++ Compile](https://intel.github.io/llvm-docs/design/CompilerAndRuntimeDesign.html
+"DPC++ Compile")

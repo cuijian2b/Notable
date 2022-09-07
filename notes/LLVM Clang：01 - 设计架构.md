@@ -7,14 +7,14 @@ created: '2022-8-02T08:30:18.408Z'
 modified: '2022-8-19T10:02:44.927Z'
 ---
 
-## LLVM 背景
+## 1、LLVM 背景
 
 LLVM 项目的创始人为 Chris Lattner，亦是Swift之父。据传作者只是想写一个底层的虚拟机，这也是 LLVM 名字的由来，Low Level
 Virtual Machine，类似Java的JVM虚拟机。后来，LLVM
 从来没有被用作过虚拟机。所以人们决定仍然叫他LLVM，其实它跟虚拟机没有半毛钱关系。官方描述如下 The name "LLVM" itself is not
 an acronym; it is the full name of the project. “LLVM”这个名称本身不是首字母缩略词，它是项目的全名。
 
-## 传统编译器架构
+## 2、传统编译器架构
 
 ![](./assert/73d76e9640df3cab176e1289f571a046.png)
 
@@ -22,7 +22,7 @@ an acronym; it is the full name of the project. “LLVM”这个名称本身不�
 * **Optimizer** ：优化代码。比如去除无用的变量或计算，进而提高代码运行效率。
 * **Backend** ：把优化后的代码转换为目标机器码（Target Instruction Set）。目标是生成充分可以利用目标机器体系结构的native code。
 
-## LLVM 架构
+## 3、LLVM 架构
 
 * 不同的前、后端使用统一的中间代码 **LLVM Intermediate Representation (LLVM IR)。**
 * 支持一种新的编程语言，只需要实现一个新的前端。
@@ -58,7 +58,7 @@ IR，也同样可以取代Clang的功能，我们也可以开发自己的前端�
 **LLVM backend** 是LLVM真正的后端，也被称为LLVM核心，包括 **编译、汇编、链接** 这一套，最后生成汇编文件或者目标码。这里的
 LLVM compiler 和 gcc compiler 不一样，这里的LLVM compiler只是编译LLVM IR。
 
-## Clang 与 LLVM 区别
+## 4、Clang 与 LLVM 区别
 
 Clang 是 LLVM 项目的一个子项目，是基于 LLVM 架构的 C/C++/Objective-C 编译器前端。
 
@@ -72,7 +72,7 @@ LLVM 整体架构，前端用的是 Clang；广义的 LLVM 是指整个 LLVM 架
 
 ![](./assert/7208e36382a75c5cfc07f6067fd4aa15.png)
 
-## Clang 与 GCC 区别
+## 5、Clang 与 GCC 区别
 
 * 编译速度快：在某些平台上，Clang的编译速度显著的快过GCC(Debug模式下编译OC速度比GCC快3倍)。
 * 占用内存小：Clang生成的AST所占用的内存是GCC的五分之一左右。
@@ -87,3 +87,9 @@ LLVM 整体架构，前端用的是 Clang；广义的 LLVM 是指整个 LLVM 架
 
 [LLVM官方文档阅读(一)LLVM介绍](https://blog.csdn.net/weixin_43296779/article/details/121989541?spm=1001.2014.3001.5506
 "LLVM官方文档阅读(一)LLVM介绍")
+
+[LLVM官方文档](https://intel.github.io/llvm-docs/
+"LLVM官方文档")
+
+[LLVM开源项目](https://github.com/intel/llvm
+"LLVM开源项目")
