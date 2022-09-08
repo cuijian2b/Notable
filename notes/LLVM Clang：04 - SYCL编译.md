@@ -4,7 +4,7 @@ tags:
   - Clang
 title: LLVM Clang：04 - SYCL编译
 created: 2022-08-02T08:30:18.408Z
-modified: 2022-09-07T09:57:41.884Z
+modified: 2022-09-08T03:05:40.013Z
 ---
 
 ## DPC++ Compiler architecture[¶](#dpc-compiler-architecture "Permalink to this headline")
@@ -13,7 +13,7 @@ DPC++ application compilation flow:
 
 ![High level component diagram for DPC++ Compiler](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/DPC++/Compiler-HLD.svg)
 
-## Diagram 1. Application build flow.
+*Diagram 1. Application build flow.*
 
 DPC++ compiler logically can be split into the host compiler and a number of device compilers—one per each supported target. Clang driver orchestrates the compilation process, it will invoke the device compiler once per each requested target, then it will invoke the host compiler to compile the host part of a SYCL source. In the simplest case, when compilation and linkage are done in one compiler driver invocation, once compilation is finished, the device object files (which are really LLVM IR files) are linked with the `llvm-link` tool. The resulting LLVM IR module is then translated into a SPIR-V module using the `llvm-spirv` tool and wrapped in a host object file using the `clang-offload-wrapper` tool. Once all the host object files and the wrapped object with device code are ready, the driver invokes the usual platform linker and the final executable called “fat binary” is produced. This is a host executable or library with embedded linked images for each target specified at the command line.
 
@@ -229,11 +229,11 @@ The diagram below illustrates the changes in the build flow. The offload bundler
 
 ![Multi source compilation flow](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/DPC++/SplitCompileAndLink.svg) 
 
-## Diagram 2. Split compilation and linkage.
+*Diagram 2. Split compilation and linkage.*
 
 *Current implementation uses LLVM IR as a default device binary format for `fat objects` and translates “linked LLVM IR” to SPIR-V. One of the reasons for this decision is that SPIR-V doesn’t support linking template functions, which could be defined in multiple modules and linker must resolve multiple definitions. LLVM IR uses function attributes to satisfy “one definition rule”, which have no counterparts in SPIR-V.*
 
-### Fat binary creation details[¶](#fat-binary-creation-details "Permalink to this headline")
+#### Fat binary creation details[¶](#fat-binary-creation-details "Permalink to this headline")
 
 “Fat binary” is a result of the final host linking step - this is a host binary with device binary(s) embedded. When run, it automatically registers all available device binaries within the SYCL runtime library. This section describes how this is achieved.
 
@@ -247,7 +247,7 @@ The wrapper object is created by the `clang-offload-wrapper` tool, or simply “
 
 The offload descriptor type hierarchy is described in the `pi.h` header. The top-level structure is `pi_device_binaries_struct`.
 
-### Device Link[¶](#device-link "Permalink to this headline")
+#### Device Link[¶](#device-link "Permalink to this headline")
 
 The -fsycl-link flag instructs the compiler to fully link device code without fully linking host code. The result of such a compile is a fat object that contains a fully linked device binary. The primary motivation for this flow is to allow users to save re-compile time when making changes that only affect their host code. In the case where device image generation takes a long time (e.g. FPGA), this savings can be significant.
 
@@ -275,7 +275,7 @@ llvm-no-spir-kernel host.bc
 
 It returns 0 if no kernels are present and 1 otherwise.
 
-### Device code post-link step[¶](#device-code-post-link-step "Permalink to this headline")
+#### Device code post-link step[¶](#device-code-post-link-step "Permalink to this headline")
 
 At link time all the device code is always linked into a single LLVM IR module. `sycl-post-link` tool performs a number of final transformations on this LLVM IR module before handing it off to the offload wrapper. Those include:
 
@@ -295,11 +295,11 @@ Depending on options, `sycl-post-link` can output either a single LLVM IR file, 
 
 ![Multi source compilation flow](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/DPC++/DeviceLinkAndWrap.svg)
 
-## Diagram 3. Device code link flows.
+*Diagram 3. Device code link flows.*
 
 Colors of the graph’s edges show which paths are taken depending on the above factors. Each edge is also annotated with the input/output file type. The diagram does not show the `llvm-foreach` tool invocations for clarity. This tool invokes given command line over each file in a file list. In this diagram the tool is applied to `llvm-spirv` and AOT backend whenever the input/output type is `TY_tempfilelist` and the target is not PTX. Following this, `file-table-tform` takes two inputs - the file table and a file list coming either from `llvm-spirv` or from the AOT backend. Targeting PTX currently only accepts a single input file for processing, so `file-table-tform` is used to extract the code file from the file table, which is then processed by the [“PTX target processing” step](#device-code-post-link-step-for-CUDA). The resulting device binary is inserted back into the file table in place of the extracted code file using `file-table-tform`.
 
-### Device code splitting[¶](#device-code-splitting "Permalink to this headline")
+##### Device code splitting[¶](#device-code-splitting "Permalink to this headline")
 
 Putting all device code into a single SPIR-V module does not work well in the following cases:
 
@@ -343,33 +343,33 @@ There are three possible values for this option:
 
 + `off` - disables device code split
 
-### Symbol table generation[¶](#symbol-table-generation "Permalink to this headline")
+##### Symbol table generation[¶](#symbol-table-generation "Permalink to this headline")
 
 TBD
 
-### Specialization constants lowering[¶](#specialization-constants-lowering "Permalink to this headline")
+##### Specialization constants lowering[¶](#specialization-constants-lowering "Permalink to this headline")
 
 See [corresponding documentation](https://intel.github.io/llvm-docs/design/SpecializationConstants.html)
 
-### CUDA support[¶](#cuda-support "Permalink to this headline")
+#### CUDA support[¶](#cuda-support "Permalink to this headline")
 
 The driver supports compilation to NVPTX when the `nvptx64-nvidia-cuda` is passed to `-fsycl-targets`.
 
 Unlike other AOT targets, the bitcode module linked from intermediate compiled objects never goes through SPIR-V. Instead it is passed directly in bitcode form down to the NVPTX Back End. All produced bitcode depends on two libraries, `libdevice.bc` (provided by the CUDA SDK) and `libspirv-nvptx64--nvidiacl.bc` variants (built by the libclc project). `libspirv-nvptx64--nvidiacl.bc` is not used directly. Instead it is used to generate remangled variants `remangled-l64-signed_char.libspirv-nvptx64--nvidiacl.bc` and `remangled-l32-signed_char.libspirv-nvptx64--nvidiacl.bc` to handle primitive type differences between Linux and Windows.
 
-#### Device code post-link step for CUDA[¶](#device-code-post-link-step-for-cuda "Permalink to this headline")
+##### Device code post-link step for CUDA[¶](#device-code-post-link-step-for-cuda "Permalink to this headline")
 
 During the “PTX target processing” in the device linking step [Device code post-link step](#device-code-post-link-step), the llvm bitcode objects for the CUDA target are linked together during the common `llvm-link` step and then split using the `sycl-post-link` tool. For each temporary bitcode file, clang is invoked for the temporary file to link `libspirv-nvptx64--nvidiacl.bc` and `libdevice.bc` and compile the resulting module to PTX using the NVPTX backend. The resulting PTX file is assembled into a cubin using the `ptxas` tool (part of the CUDA SDK). The PTX file and cubin are assembled together using `fatbinary` to produce a CUDA fatbin. The produced CUDA fatbins then replace the llvm bitcode files in the file table generated by `sycl-post-link`. The resulting table is passed to the offload wrapper tool.
 
 ![NVPTX AOT build](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/DPC++/DevicePTXProcessing.svg)
 
-#### Checking if the compiler is targeting NVPTX[¶](#checking-if-the-compiler-is-targeting-nvptx "Permalink to this headline")
+##### Checking if the compiler is targeting NVPTX[¶](#checking-if-the-compiler-is-targeting-nvptx "Permalink to this headline")
 
 When the SYCL compiler is in device mode and targeting the NVPTX backend, the compiler defines `__SYCL_DEVICE_ONLY__` and `__NVPTX__` macros. This macro combination can safely be used to enable NVPTX specific code path in SYCL kernels.
 
 *Note: these macros are defined only during the device compilation phase.*
 
-#### NVPTX Builtins[¶](#nvptx-builtins "Permalink to this headline")
+##### NVPTX Builtins[¶](#nvptx-builtins "Permalink to this headline")
 
 Builtins are implemented in OpenCL C within libclc. OpenCL C treats `long` types as 64 bit and has no `long long` types while Windows DPC++ treats `long` types like 32-bit integers and `long long` types like 64-bit integers. Differences between the primitive types can cause applications to use incompatible libclc built-ins. A remangler creates multiple libspriv files with different remangled function names to support both Windows and Linux. When building a SYCL application targeting the CUDA backend the driver will link the device code with `remangled-l32-signed_char.libspirv-nvptx64--nvidiacl.bc` if the host target is Windows or it will link the device code with `remangled-l64-signed_char.libspirv-nvptx64--nvidiacl.bc` if the host target is Linux.
 
@@ -391,7 +391,7 @@ double my_min(double x, double y) {
 }
 ```
 
-#### Local memory support[¶](#local-memory-support "Permalink to this headline")
+##### Local memory support[¶](#local-memory-support "Permalink to this headline")
 
 In CUDA, users can only allocate one chunk of host allocated shared memory (which maps to SYCL’s local accessors). This chunk of memory is allocated as an array `extern __shared__ <type> <name>[];` which LLVM represents as an external global symbol to the CUDA shared memory address space. The NVPTX backend then lowers this into a `.extern .shared .align 4 .b8` PTX instruction.
 
@@ -431,7 +431,7 @@ define void @SYCL_generated_kernel(i32 %local_ptr_offset, i32 %arg, i32 %local_p
 
 On the runtime side, when setting local memory arguments, the CUDA PI implementation will internally set the argument as the offset with respect to the accumulated size of used local memory. This approach preserves the existing PI interface.
 
-#### Global offset support[¶](#global-offset-support "Permalink to this headline")
+##### Global offset support[¶](#global-offset-support "Permalink to this headline")
 
 The CUDA API does not natively support the global offset parameter expected by the SYCL.
 
