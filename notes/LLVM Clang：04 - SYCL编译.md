@@ -227,7 +227,7 @@ Overall build flow changes compared to the one shown on the Diagram 1 above in t
 
 The diagram below illustrates the changes in the build flow. The offload bundler/unbundler actions are basically inserted between the `llvm-link` and the `linker` invocations as shown on the Diagram 1.
 
-![Multi source compilation flow](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/DPC++/SplitCompileAndLink.svg) 
+![Multi source compilation flow](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/DPC++/SplitCompileAndLink.svg)
 
 *Diagram 2. Split compilation and linkage.*
 

@@ -19,7 +19,7 @@ GPU 专门用于高度并行计算，因此设计时更多的晶体管用于数�
 下图显示了 CPU 与 GPU 的芯片资源分布示例:
 
 ![在这里插入图片描述](
-./assert/21bfe06dfa0e4da1a5522c479669fd78.png)
+https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/21bfe06dfa0e4da1a5522c479669fd78.png)
 
 将更多晶体管用于数据处理，例如浮点计算，有利于高度并行计算。GPU可以通过计算隐藏内存访问延迟，而不是依靠大数据缓存和复杂的流控制来避免长时间的内存访问延迟，这两者在晶体管方面都是昂贵的。
 
@@ -29,7 +29,7 @@ GPU 专门用于高度并行计算，因此设计时更多的晶体管用于数�
 
 CUDA 附带一个软件环境，允许开发人员使用 C++ 作为高级编程语言。 如下图所示，支持其他语言、应用程序编程接口或基于指令的方法，例如FORTRAN、DirectCompute、OpenACC。
 
-![在这里插入图片描述](./assert/69f2e62372544ed6bd2ccef9de4bf5fc.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/69f2e62372544ed6bd2ccef9de4bf5fc.png)
 
 ### 1.3 可扩展的编程模型
 
@@ -45,7 +45,7 @@ CUDA并行编程模型旨在克服这一挑战，同时为熟悉C等标准编程
 
 这种可扩展的编程模型允许 GPU 架构通过简单地扩展multiprocessor和内存分区的数量来跨越广泛的市场范围：高性能发烧友 GeForce GPU，专业的 Quadro 和 Tesla 计算产品 (有关所有支持 CUDA 的 GPU 的列表，请参阅[支持 CUDA 的 GPU](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#cuda-enabled-gpus))。
 
-![在这里插入图片描述](./assert/6f13e1d3ab494f76a1eb5301603c75e4.png)
+![在这里插入图片描述](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/6f13e1d3ab494f76a1eb5301603c75e4.png)
 
 注意：GPU 是围绕一系列流式多处理器 (SM: Streaming Multiprocessors)构建的（有关详细信息，请参[阅硬件实现](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#hardware-implementation)）。多线程程序被划分为彼此独立执行的线程块，因此具有更多multiprocessor的 GPU 将比具有更少多处理器的 GPU 在更短的时间内完成程序执行。
 
