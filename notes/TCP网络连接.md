@@ -6,8 +6,10 @@ modified: '2021-12-22T08:10:41.058Z'
 ---
 
 # TCP网络连接
+
 ### 1、回调函数注册
-```prettyprint
+
+```c++
 // 回调映射结构
 std::unordered_map<int, std::function<void(ProtoHeader *, char *, int)>>;
 // 注册回调
@@ -16,8 +18,10 @@ std::function<void(ProtoHeader *, char *, int)> callBack =
                 this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 RspFuncs[cmd] = callBack;
 ```
+
 ### 2、网络配置
-```prettyprint
+
+```c++
 #define NTOHLL(value) ({                                                                                   \
     int64_t val = value;                                                                                   \
     if (__BYTE_ORDER == __LITTLE_ENDIAN)                                                                   \
@@ -45,8 +49,10 @@ RspFuncs[cmd] = callBack;
         val;                                                                                                   \
     })
 ```
+
 ### 3、读数据线程
-```prettyprint
+
+```c++
 // 读数据线程函数
 void CClientOnloadSocket::ReadThread()
 {
@@ -80,8 +86,10 @@ else
     IsReadOver = false;
 }
 ```
+
 ### 4、关闭连接
-```prettyprint
+
+```c++
 void CClientOnloadSocket::Close()
 {
     RspConnect(2, 0);
@@ -92,8 +100,10 @@ void CClientOnloadSocket::Close()
     Heart.Reset();
 }
 ```
+
 ### 5、关闭线程
-```prettyprint
+
+```c++
 CClientOnloadSocket::~CClientOnloadSocket()
 {
     if (readThread)

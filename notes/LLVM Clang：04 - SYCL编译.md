@@ -1,7 +1,6 @@
 ---
 tags:
   - LLVM
-  - Clang
 title: LLVM Clang：04 - SYCL编译
 created: 2022-08-02T08:30:18.408Z
 modified: 2022-09-08T03:05:40.013Z
