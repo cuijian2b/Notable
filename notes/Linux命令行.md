@@ -139,6 +139,7 @@ find . -name "*" -size 145800c -print -exec rm -rf {} \;
 - `" -type f "`查找的类型为文件
 - `"-print"` 输出查找的文件目录名
 - `-size 145800c` 指定文件的大小
+- `-perm 664` 指定文件用户权限
 - `-exec rm -rf {} \;` 递归删除（前面查询出来的结果）
 
 ### 4、压缩和解压缩
@@ -185,6 +186,16 @@ yum install -y lrzsz
 
 rz          上传文件；
 sz          下载文件；
+```
+
+### 6、文件批处理
+
+```bash
+ls *.log | xargs rm -rf {}                          删除文件
+rm -rf *.log                                        删除文件
+find. -name | xargs -p -i cp {} ../tmp/             移动文件
+ps -ef|grep conda|awk '{print $2}'|xargs kill -9    关闭进程
+ls *.bc | xargs -t -i llvm-dis {} -o {}             转换格式
 ```
 
 ## 三、文件内容操作（查看日志，更改配置文件）
@@ -235,11 +246,11 @@ tail -n 7 a.java        查看a.java文件的后7行内容；
 ### 3、文件内部搜索指定的内容
 
 ```bash
-grep under 123.txt           在123.txt文件中搜索under字符串，大小写敏感，显示行；
-grep -n under 123.txt        在123.txt文件中搜索under字符串，大小写敏感，显示行及行号；
-grep -v under 123.txt        在123.txt文件中搜索under字符串，大小写敏感，显示没搜索到的行；
-grep -i under 123.txt        在123.txt文件中搜索under字符串，大小写敏感，显示行；
-grep -ni under 123.txt       在123.txt文件中搜索under字符串，大小写敏感，显示行及行号；
+grep under 123.txt           大小写敏感，显示行；
+grep -n under 123.txt        大小写敏感，显示行及行号；
+grep -v under 123.txt        大小写敏感，显示没搜索到的行；
+grep -i under 123.txt        大小写敏感，显示行；
+grep -ni under 123.txt       大小写敏感，显示行及行号；
 ```
 
 ### 4、查看库文件内容
@@ -444,7 +455,7 @@ ls -l
 lsof -p $PID
 ```
 
-**1、shutdown(关闭计算机)**
+### 4、shutdown(关闭计算机)
 
 shutdown是最常用也是最安全的关机和重启命令，它会在关机之前调用fsck检查磁盘，其中-h和-r是最常用的参数：
 
@@ -463,7 +474,7 @@ shutdown -r now    --立即重启
 shutdown -r +30 'The System Will Reboot in 30 Mins'   --30分钟后重启并并发送通知给其它在线用户  
 ```
 
-**2、查看处于各种连接状态数量(ESTABLISHED、CLOSE_WAIT、TIME_WAIT)**
+### 5、查看处于各种连接状态数量(ESTABLISHED、CLOSE_WAIT、TIME_WAIT)
 
 ```bash
 netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
@@ -488,7 +499,7 @@ netstat -nt | awk '{if($NF=="CLOSE_WAIT"){wait[$5]++}}END{for(i in wait) print i
 netstat -nt | awk '{if($NF=="TIME_WAIT"){wait[$5]++}}END{for(i in wait) print i,wait[i]}'
 ```
 
-**4.查看PID进程信息**
+### 6、查看PID进程信息
 
 ```bash
 ps -aux |grep 28990
@@ -500,19 +511,19 @@ ps -aux |grep 28990
 jstack 2246|grep '0x9eb' -A 50
 ```
 
-**6、ps 命令**\
 过滤得到当前系统中的 ssh 进程信息
 
 ```bash
 ps aux | grep 'ssh'
 ```
 
-**7、管道命令**\
+### 7、管道命令
+
 `简单来说, Linux 中管道的作用是将上一个命令的输出作为下一个命令的输入, 像 pipe 一样将各个命令串联起来执行, 管道的操作符是 |`\
 管道命令查看当前运行的程序中，名称为java的程序
 
 ```bash
-ps -ef|grep java
+ps -ef | grep java
 ```
 
 查看/etc/passwd文件中的root内容
@@ -527,22 +538,24 @@ cat /etc/passwd | grep 'root'
 netstat -an
 ```
 
-将sh
+### 8、后台nohup
+
 test.sh任务放到后台，并将打印的日志输出到nohup.out文件中，**终端不再能够接收任何输入（标准输入）**
 
 ```bash
-nohup sh test.sh  &
+nohup sh test.sh &
 ```
 
-将sh
 test.sh任务放到后台，并将打印的日志输出到nohup.out文件中，**终端能够接收任何输入**
 
 ```bash
-nohup sh test.sh  &
+nohup sh test.sh &
 ```
 
-8、添加Host地址\
+### 9、添加Host地址
+
 打开配置文件
+
 
 ```bash
 vim /etc/hosts

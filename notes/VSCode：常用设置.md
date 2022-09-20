@@ -1,7 +1,7 @@
 ---
 tags: 
     - Tool
-title: VSCode常用设置
+title: VSCode：常用设置
 created: '2021-11-24T09:23:17.619Z'
 modified: '2021-11-25T03:52:12.423Z'
 ---

@@ -79,6 +79,25 @@ LLVM 整体架构，前端用的是 Clang；广义的 LLVM 是指整个 LLVM 架
 * 诊断信息可读性强：在编译过程中，Clang 创建并保留了大量详细的元数据 (metadata)，有利于调试和错误报告。
 * 设计清晰简单，容易理解，易于扩展增强。
 
+## 6、学习资料
+
+* [HPCwire: Global News on High Performance Computing (HPC)](https://www.hpcwire.com/) 关注于高性能计算与异构计算的网站。时常会有关于 `SYCL` 和 `oneAPI` 相关的内容，以及其他高性能计算领域的前沿成果和技术。
+
+* [Devcloud intel](https://www.intel.com/content/www/us/en/developer/tools/devcloud/overview.html)官方网站，内有虚拟环境可供进行 `DPC++` 编译和运行，同时网站内的包含入门DPC++的[基础课程](https://devcloud.intel.com/oneapi/get_started/baseTrainingModules/)。
+
+* [Codeplay Developer](https://developer.codeplay.com/home/) `DPC++` 支持 `CUDA` 的部分由该组织编写，同时，该组织维护了 `SYCL` 的另外一个分支 `Compute CPP`。
+
+* [oneAPI-SRC](https://github.com/oneapi-src) `Intel`官方关于 `oneAPI` 的源码，里面包括了很多sample代码值得学习。
+
+* [intel/llvm](https://github.com/intel/llvm) `DPC++` 开源项目。
+
+* [DPC++ Docs](https://intel.github.io/llvm-docs/) `DPC++` 官方文档。
+
+## 7、关联项目
+
+* [microsoft/llvm-mctoll](https://github.com/microsoft/llvm-mctoll) 逆向工程二进制文件转LLVM IR工具。
+
+
 **参考**：
 
 [LLVM | 编译器框架](https://blog.csdn.net/qq_38844835/article/details/122553656?spm=1001.2014.3001.5506
@@ -86,9 +105,3 @@ LLVM 整体架构，前端用的是 Clang；广义的 LLVM 是指整个 LLVM 架
 
 [LLVM官方文档阅读(一)LLVM介绍](https://blog.csdn.net/weixin_43296779/article/details/121989541?spm=1001.2014.3001.5506
 "LLVM官方文档阅读(一)LLVM介绍")
-
-[LLVM官方文档](https://intel.github.io/llvm-docs/
-"LLVM官方文档")
-
-[LLVM开源项目](https://github.com/intel/llvm
-"LLVM开源项目")

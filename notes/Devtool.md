@@ -9,12 +9,23 @@ modified: '2021-11-25T03:52:12.423Z'
 
 #### 查询
 
-* [ip或域名](https://site.ip138.com/github.com/)
+* [ip or web](https://site.ip138.com/github.com/)
+
+* [stackoverflow](https://stackoverflow.com/)
+
+* [github](https://github.com/)
+
+* [runoob](https://www.runoob.com/)
 
 #### 格式转换
 
 * [html to md](https://devtool.tech/html-md)
 
+#### 编程练习
+
+* [leetcode](https://leetcode.cn/)
+
+* [nowcoder](https://www.nowcoder.com/)
 
 开源软件patch
 二进制文件差异消除
