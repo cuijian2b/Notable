@@ -8,7 +8,7 @@ modified: '2021-11-25T03:52:12.423Z'
 
 ## 1、配置属性
 
-```prettyprint
+```json
 {
     "editor.formatOnSave": false,     // 保存文件时代码格式化
     "editor.autosave": false,         // 自动保存方式
@@ -18,7 +18,7 @@ modified: '2021-11-25T03:52:12.423Z'
 
 ## 2、常用快捷键
 
-```prettyprint
+```json
 {
     Alt+Shift,            // 竖列选择
     Alt+左键,             // 选中多行
@@ -32,7 +32,7 @@ modified: '2021-11-25T03:52:12.423Z'
 
 ## 3、代码格式配置
 
-```prettyprint
+```bash
 # .clang-format语言: None, Cpp, Java, JavaScript, ObjC, Proto, TableGen, TextProto
 Language: Cpp
 # BasedOnStyle: LLVM

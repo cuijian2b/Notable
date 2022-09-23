@@ -54,5 +54,3 @@ Installing to /root/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523 
 ![](https://cdn.jsdelivr.net/gh/cuijian2b/Notable@master/notes/assert/cfb4f35ba3594a2194477cf4e3bb3d36.png)
 
 将vscode-server-linux-x64.tar.gz在服务器上解压，然后进入/root/.vscode-server/bin/目录，该目录下会有一个以自己vscode的版本hash-id命名的目录，将解压后的vscode-server-linux-x64.tar.gz中的所有文件拷贝至该目录，再使用vscode配置好的config文件再登录远程服务器。
-
-****

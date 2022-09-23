@@ -17,6 +17,8 @@ modified: '2021-11-25T03:52:12.423Z'
 
 打开命令面板，输入`Customize CSS`，打开`style.less`文件。
 
++ View Style
+
 ```json
 {
   // modify your style here
@@ -27,8 +29,18 @@ modified: '2021-11-25T03:52:12.423Z'
 }
 ```
 
-[Markdown Preview Enhanced](https://ugirc.blog.csdn.net/article/details/104983125
-"Markdown Preview Enhanced")
++ Setting
+
+```json
+{
+    "markdown-preview-enhanced.enableExtendedTableSyntax": true, // MPE 表格扩展功能
+    "markdown-preview-enhanced.enableScriptExecution": true, // MPE 渲染代码的运行结果功能，侧边目录栏依赖此设置
+}
+```
+
+[MPE Style](https://ugirc.blog.csdn.net/article/details/104983125)
+[MPE Tutorial](http://events.jianshu.io/p/61fa34bf777f)
+
 
 ## 2、离线安装vscode插件
 
