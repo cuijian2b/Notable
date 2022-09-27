@@ -1,7 +1,7 @@
 ---
 tags: 
-    - Manual
-title: CUDA：编程手册
+    - HandBook
+title: CUDA：HandBook
 created: '2022-8-02T08:30:18.408Z'
 modified: '2022-8-19T10:02:44.927Z'
 ---
