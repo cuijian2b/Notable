@@ -12,8 +12,8 @@ modified: '2021-11-25T03:52:12.423Z'
 
 ### 教程
 
-- [CMake Tutorial CSDN](https://blog.csdn.net/cuijian2B/article/details/127066441)
+- [CMake Tutorial CSDN](https://blog.csdn.net/cuijian2b/category_12030573.html)
 
 ### 工具
 
-- VSCode PI -> Python
+- VSCode PI -> `Python`
