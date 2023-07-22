@@ -1,6 +1,6 @@
 ---
 tags: 
-    - Tool
+    - HandBook
 title: Devtool
 created: '2021-11-24T09:23:17.619Z'
 modified: '2021-11-25T03:52:12.423Z'
@@ -8,6 +8,8 @@ modified: '2021-11-25T03:52:12.423Z'
 
 
 #### 查询
+
+* [mintisan help](https://github.com/mintisan/mintisan.github.io/wiki)
 
 * [ip or web](https://site.ip138.com/github.com/)
 
