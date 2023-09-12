@@ -16,9 +16,16 @@ modified: '2021-11-25T03:52:12.423Z'
 
 - [Git Tutorial](http://git-scm.com/docs/gittutorial)
 - [Git Runoob](https://www.runoob.com/git/git-tutorial.html)
-- [GitHub Hosts](https://www.jianshu.com/p/1db303f6ee18)
+- [GitHub Hosts](https://blog.csdn.net/weixin_43804496/article/details/131475204)
 
 ### 工具
 
 - [GUI Clients](https://git-scm.com/downloads/guis)
 - [Tortoise Git](https://tortoisegit.org/)
+
+### 常用命令
+
+```bash
+git config --global user.name "runoob"
+git config --global user.email test@runoob.com
+```
